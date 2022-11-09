@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. CS_EtabsAPI_ConnectExcelEtabs", "01. CS_EtabsAPI_ConnectExcelEtabs\01. CS_EtabsAPI_ConnectExcelEtabs.csproj", "{CD742607-87E5-42DC-9521-041B906CA317}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD742607-87E5-42DC-9521-041B906CA317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD742607-87E5-42DC-9521-041B906CA317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD742607-87E5-42DC-9521-041B906CA317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD742607-87E5-42DC-9521-041B906CA317}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03C57F3D-790D-404E-9EBC-9C245331AE5C}
+	EndGlobalSection
+EndGlobal
