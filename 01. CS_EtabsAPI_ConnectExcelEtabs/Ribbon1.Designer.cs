@@ -43,7 +43,6 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             this.comboBox1 = this.Factory.CreateRibbonComboBox();
             this.CheckStructure = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
-            this.splitButton2 = this.Factory.CreateRibbonSplitButton();
             this.tab1.SuspendLayout();
             this.Etabs.SuspendLayout();
             this.CheckStructure.SuspendLayout();
@@ -83,7 +82,6 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             // CheckStructure
             // 
             this.CheckStructure.Items.Add(this.button2);
-            this.CheckStructure.Items.Add(this.splitButton2);
             this.CheckStructure.Label = "Kiểm tra ổn định kết cấu";
             this.CheckStructure.Name = "CheckStructure";
             // 
@@ -95,12 +93,6 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             this.button2.Name = "button2";
             this.button2.ShowImage = true;
             this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CheckStruture);
-            // 
-            // splitButton2
-            // 
-            this.splitButton2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.splitButton2.Label = "splitButton2";
-            this.splitButton2.Name = "splitButton2";
             // 
             // Ribbon1
             // 
@@ -126,7 +118,6 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup CheckStructure;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
         public Microsoft.Office.Tools.Ribbon.RibbonGroup Etabs;
-        internal Microsoft.Office.Tools.Ribbon.RibbonSplitButton splitButton2;
     }
 
     partial class ThisRibbonCollection
