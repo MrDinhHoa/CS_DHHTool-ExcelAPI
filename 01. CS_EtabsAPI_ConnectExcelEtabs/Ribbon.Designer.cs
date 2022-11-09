@@ -1,14 +1,14 @@
 ﻿
 namespace _01.CS_EtabsAPI_ConnectExcelEtabs
 {
-    partial class Ribbon1 : Microsoft.Office.Tools.Ribbon.RibbonBase
+    partial class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public Ribbon1()
+        public Ribbon()
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
         private void InitializeComponent()
         {
             Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.Etabs = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
@@ -94,12 +94,12 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             this.button2.ShowImage = true;
             this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CheckStruture);
             // 
-            // Ribbon1
+            // Ribbon
             // 
-            this.Name = "Ribbon1";
+            this.Name = "Ribbon";
             this.RibbonType = "Microsoft.Excel.Workbook";
             this.Tabs.Add(this.tab1);
-            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon1_Load);
+            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
             this.Etabs.ResumeLayout(false);
@@ -122,9 +122,9 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
 
     partial class ThisRibbonCollection
     {
-        internal Ribbon1 Ribbon1
+        internal Ribbon Ribbon
         {
-            get { return this.GetRibbon<Ribbon1>(); }
+            get { return this.GetRibbon<Ribbon>(); }
         }
     }
 }
