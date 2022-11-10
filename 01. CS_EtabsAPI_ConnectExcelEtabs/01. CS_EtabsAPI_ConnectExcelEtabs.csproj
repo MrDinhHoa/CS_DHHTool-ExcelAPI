@@ -170,6 +170,8 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="SelectEtabsFile.cs" />
+    <Compile Include="Library\JointDisplacment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

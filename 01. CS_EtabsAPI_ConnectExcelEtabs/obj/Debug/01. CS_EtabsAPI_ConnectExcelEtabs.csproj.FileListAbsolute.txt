@@ -29,3 +29,18 @@ D:\01. WORKING\00. C-Sharp\C-Sharp_LapTrinhEtabAPI_DHH-StrucTool\01. CS_EtabsAPI
 D:\01. WORKING\00. C-Sharp\C-Sharp_LapTrinhEtabAPI_DHH-StrucTool\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\01. CS_EtabsAPI_ConnectExcelEtabs.csproj.CopyComplete
 D:\01. WORKING\00. C-Sharp\C-Sharp_LapTrinhEtabAPI_DHH-StrucTool\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.dll
 D:\01. WORKING\00. C-Sharp\C-Sharp_LapTrinhEtabAPI_DHH-StrucTool\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.pdb
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.pdb
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.dll.manifest
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.vsto
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\Microsoft.Office.Tools.v4.0.Framework.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\Microsoft.VisualStudio.Tools.Applications.Runtime.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\01. CS_EtabsAPI_ConnectExcelEtabs.csproj.AssemblyReference.cache
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.Properties.Resources.resources
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.Ribbon.resources
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\01. CS_EtabsAPI_ConnectExcelEtabs.csproj.GenerateResource.cache
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\01. CS_EtabsAPI_ConnectExcelEtabs.csproj.CoreCompileInputs.cache
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\01. CS_EtabsAPI_ConnectExcelEtabs.csproj.CopyComplete
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01. CS_EtabsAPI_ConnectExcelEtabs\obj\Debug\_01.CS_EtabsAPI_ConnectExcelEtabs.pdb
