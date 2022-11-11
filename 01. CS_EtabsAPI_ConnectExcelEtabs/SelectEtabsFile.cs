@@ -102,15 +102,6 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
 
             //Get a reference to cSapModel to access all API classes and functions
             mySapModel = myETABSObject.SapModel;
-            int units = mySapModel.SetPresentUnits((eUnits) 6);
-            int numberName = 0;
-            string[] myName = { };
-            mySapModel.LoadCases.GetNameList(ref numberName, ref myName);
-            List<cLoadCases> listLoad = new List<cLoadCases>();
-            for (int i = 0; i < numberName - 1; i++)
-            {
-                listLoad.Add(myName[i]);
-            }
         }
     }
 }

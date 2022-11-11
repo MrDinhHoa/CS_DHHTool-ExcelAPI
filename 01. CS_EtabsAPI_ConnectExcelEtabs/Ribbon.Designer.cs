@@ -40,7 +40,7 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             this.tab1 = this.Factory.CreateRibbonTab();
             this.Etabs = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
-            this.comboBox1 = this.Factory.CreateRibbonComboBox();
+            this.unitsComBox = this.Factory.CreateRibbonComboBox();
             this.CheckStructure = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
@@ -60,7 +60,7 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             // 
             this.Etabs.DialogLauncher = ribbonDialogLauncherImpl1;
             this.Etabs.Items.Add(this.button1);
-            this.Etabs.Items.Add(this.comboBox1);
+            this.Etabs.Items.Add(this.unitsComBox);
             this.Etabs.Label = "ETABS";
             this.Etabs.Name = "Etabs";
             this.Etabs.Position = this.Factory.RibbonPosition.AfterOfficeId("");
@@ -73,11 +73,11 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ClickEtabs);
             // 
-            // comboBox1
+            // unitsComBox
             // 
-            this.comboBox1.Label = "Đơn vị";
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Text = null;
+            this.unitsComBox.Label = "Đơn vị";
+            this.unitsComBox.Name = "unitsComBox";
+            this.unitsComBox.Text = null;
             // 
             // CheckStructure
             // 
@@ -114,7 +114,7 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBox1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox unitsComBox;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup CheckStructure;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
         public Microsoft.Office.Tools.Ribbon.RibbonGroup Etabs;

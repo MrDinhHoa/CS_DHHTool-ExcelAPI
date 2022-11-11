@@ -15,18 +15,25 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
     public partial class Ribbon
     {
         public cOAPI etabModel = null;
+        public cSapModel SapModel = null;
+        EtabsClass etabsClass = new EtabsClass();
+       
+
         private void Ribbon_Load(object sender, RibbonUIEventArgs e)
         {
+
             InitializeComponent();
         }
         public void ClickEtabs(object sender, RibbonControlEventArgs e)
         {
-            
+            etabsClass.SelectEtabs();
+            etabModel = etabsClass.myETABSObject;
+            SapModel = etabsClass.mySapModel;
         }
         
         private void CheckStruture(object sender, RibbonControlEventArgs e)
         {
-            
+         
         }
 
         
