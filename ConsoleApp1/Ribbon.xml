@@ -1,0 +1,13 @@
+﻿<customUI xmlns="https://schemas.microsoft.com/office/2006/01/customui">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabInsert">
+        <group id="LegalGroup" label="Legal Pages"
+               insertAfterMso="GroupInsertPages">
+          <button id="BlankPageButton" label="Intentionally Blank Page"
+                  size="large" image="BlankIcon"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

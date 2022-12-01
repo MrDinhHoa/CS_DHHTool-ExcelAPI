@@ -92,7 +92,7 @@ namespace _01.CS_EtabsAPI_ConnectExcelEtabs
             this.button2.Label = "Kiểm tra chuyển vị";
             this.button2.Name = "button2";
             this.button2.ShowImage = true;
-            this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CheckStruture);
+            this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ShowReactionLoad);
             // 
             // Ribbon
             // 

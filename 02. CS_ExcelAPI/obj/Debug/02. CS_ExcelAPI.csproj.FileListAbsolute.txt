@@ -1,0 +1,2 @@
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\02. CS_ExcelAPI\obj\Debug\02. CS_ExcelAPI.csproj.AssemblyReference.cache
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\02. CS_ExcelAPI\obj\Debug\02. CS_ExcelAPI.csproj.CoreCompileInputs.cache
