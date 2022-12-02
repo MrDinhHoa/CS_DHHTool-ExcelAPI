@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. CS_EtabsAPI_ConnectExcelEtabs", "01. CS_EtabsAPI_ConnectExcelEtabs\01. CS_EtabsAPI_ConnectExcelEtabs.csproj", "{CD742607-87E5-42DC-9521-041B906CA317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.CS_ExcelAPI", "01.CS_ExcelAPI\01.CS_ExcelAPI.csproj", "{D3D8CFDB-EEA1-43B3-BD25-7EB0D92339DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD742607-87E5-42DC-9521-041B906CA317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD742607-87E5-42DC-9521-041B906CA317}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD742607-87E5-42DC-9521-041B906CA317}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD742607-87E5-42DC-9521-041B906CA317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D8CFDB-EEA1-43B3-BD25-7EB0D92339DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D8CFDB-EEA1-43B3-BD25-7EB0D92339DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D8CFDB-EEA1-43B3-BD25-7EB0D92339DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D8CFDB-EEA1-43B3-BD25-7EB0D92339DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
