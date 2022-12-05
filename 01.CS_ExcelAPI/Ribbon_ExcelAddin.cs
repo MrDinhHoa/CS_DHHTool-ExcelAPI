@@ -53,24 +53,38 @@ namespace _01.CS_ExcelAPI
 
             int NumberNames = 1;
             string[] MyName = null;
-            double[] X = null;
-            double[] Y = null;
-            double[] Z = null;
+            //double[] X = null;
+            //double[] Y = null;
+            //double[] Z = null;
 
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
             int v = SapModel.Results.Setup.SetComboSelectedForOutput("ENVESLS");
-            SapModel.Results.JointReact("ALL", eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref F1, ref F2, ref F3, ref M1, ref M2, ref M3);
+            //SapModel.Results.JointReact("ALL", eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref F1, ref F2, ref F3, ref M1, ref M2, ref M3);
             JointReaction jReactions = new JointReaction();
-            jReactions.Name = Name;
-            jReactions.LoadCase = "ENVESLS";
-            jReactions.F1 = F1[0];
-            jReactions.F2 = F2[0];
-            jReactions.F3 = F3[0];
-            jReactions.M1 = M1[0];
-            jReactions.M2 = M2[0];
-            jReactions.M3 = M3[0];
-            JointReaction.Add(jReactions);
-            SapModel.PointObj.GetAllPoints(ref NumberNames, ref MyName, ref X, ref Y, ref Z);
+            //jReactions.Name = Name;
+            //jReactions.LoadCase = "ENVESLS";
+            //jReactions.F1 = F1[0];
+            //jReactions.F2 = F2[0];
+            //jReactions.F3 = F3[0];
+            //jReactions.M1 = M1[0];
+            //jReactions.M2 = M2[0];
+            //jReactions.M3 = M3[0];
+            //JointReaction.Add(jReactions);
+            
+            SapModel.PointObj.GetNameListOnStory("Base", ref NumberNames, ref MyName);
+            for (int i= 0; i < MyName.Length; i++)
+            {
+                SapModel.Results.JointReact(MyName[i],eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref F1, ref F2, ref F3, ref M1, ref M2, ref M3);
+                jReactions.Name = MyName[i];
+                jReactions.LoadCase = "ENVESLS";
+                jReactions.F1 = F1[0];
+                jReactions.F2 = F2[0];
+                jReactions.F3 = F3[0];
+                jReactions.M1 = M1[0];
+                jReactions.M2 = M2[0];
+                jReactions.M3 = M3[0];
+                JointReaction.Add(jReactions);
+            }
         }
     }
 }

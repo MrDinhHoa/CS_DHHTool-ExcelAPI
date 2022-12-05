@@ -20,3 +20,23 @@ D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Memory.x
 D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Numerics.Vectors.xml
 D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Buffers.xml
 D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\_01.CS_ExcelAPI.RibbonExcelAddin.resources
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\01.CS_ExcelAPI.dll
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\01.CS_ExcelAPI.pdb
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\01.CS_ExcelAPI.dll.manifest
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\01.CS_ExcelAPI.vsto
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Memory.dll
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Numerics.Vectors.dll
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Buffers.dll
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Memory.xml
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Numerics.Vectors.xml
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\System.Buffers.xml
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.csproj.AssemblyReference.cache
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\_01.CS_ExcelAPI.Properties.Resources.resources
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\_01.CS_ExcelAPI.RibbonExcelAddin.resources
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.csproj.GenerateResource.cache
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.csproj.CoreCompileInputs.cache
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.csproj.CopyComplete
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.dll
+D:\01. WORKING\00. C-Sharp\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.pdb
