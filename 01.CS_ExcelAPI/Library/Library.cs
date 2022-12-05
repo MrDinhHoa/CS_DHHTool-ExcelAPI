@@ -1,4 +1,5 @@
-﻿using System;
+﻿// ReSharper disable All
+using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ETABSv17;
@@ -109,7 +110,6 @@ namespace _01.CS_ExcelAPI
             MySapModel = MyEtabsObject.SapModel;
         }
     }
-
     public class LoadCombination
     {
         public int NumberNames { get; set; }
@@ -137,14 +137,6 @@ namespace _01.CS_ExcelAPI
         public double M1 { get; set; }
         public double M2 { get; set; }
         public double M3 { get; set; }
-
-    }
-
-    public class ExcelClass
-    {
-        _Application excel = new _Excel.Application();
-        Workbook wb;
-        Worksheet ws;
 
     }
 }

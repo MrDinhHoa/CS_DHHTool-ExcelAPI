@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
@@ -17,6 +18,19 @@ namespace _01.CS_ExcelAPI
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+        }
+
+        public Excel.Worksheet GetActiveWorkSheet()
+        {
+            return (Excel.Worksheet) Application.ActiveSheet;
+        }
+        public Excel.Workbook GetActiveWorkBook()
+        {
+            return (Excel.Workbook)Application.ActiveWorkbook;
+        }
+        public Excel.Application GetActiveApp()
+        {
+            return (Excel.Application)Application.Application;
         }
 
         #region VSTO generated code
