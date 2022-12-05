@@ -38,10 +38,10 @@ namespace _01.CS_ExcelAPI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RibbonExcelAddin));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.BtnSelectEtabs = this.Factory.CreateRibbonButton();
             this.comboBoxUnits = this.Factory.CreateRibbonComboBox();
             this.comboBoxComboLoad = this.Factory.CreateRibbonComboBox();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.BtnSelectEtabs = this.Factory.CreateRibbonButton();
             this.BtnCheckStruc = this.Factory.CreateRibbonButton();
             this.BtnReaction = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
@@ -65,6 +65,14 @@ namespace _01.CS_ExcelAPI
             this.group1.Label = "ETBAS";
             this.group1.Name = "group1";
             // 
+            // BtnSelectEtabs
+            // 
+            this.BtnSelectEtabs.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelectEtabs.Image")));
+            this.BtnSelectEtabs.Label = "Chọn file ETABS";
+            this.BtnSelectEtabs.Name = "BtnSelectEtabs";
+            this.BtnSelectEtabs.ShowImage = true;
+            this.BtnSelectEtabs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSelectEtabs_Click);
+            // 
             // comboBoxUnits
             // 
             this.comboBoxUnits.Label = "Đơn vị";
@@ -85,14 +93,6 @@ namespace _01.CS_ExcelAPI
             this.group2.Items.Add(this.BtnReaction);
             this.group2.Label = "Kiểm tra ổn định kết cấu";
             this.group2.Name = "group2";
-            // 
-            // BtnSelectEtabs
-            // 
-            this.BtnSelectEtabs.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelectEtabs.Image")));
-            this.BtnSelectEtabs.Label = "Chọn file ETABS";
-            this.BtnSelectEtabs.Name = "BtnSelectEtabs";
-            this.BtnSelectEtabs.ShowImage = true;
-            this.BtnSelectEtabs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSelectEtabs_Click);
             // 
             // BtnCheckStruc
             // 

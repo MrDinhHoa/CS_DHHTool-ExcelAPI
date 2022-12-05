@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ETABSv17;
 
@@ -18,7 +19,7 @@ namespace _01.CS_ExcelAPI
             //this allows for a connection to a version of ETABS other than the latest installation
             //otherwise the latest installed version of ETABS will be launched
             bool specifyPath = false;
-
+            
             //if the above flag is set to true, specify the path to ETABS below
             string programPath = "C:\\Program Files (x86)\\Computers and Structures\\ETABS 18\\ETABS.exe"; ;
 
@@ -91,13 +92,22 @@ namespace _01.CS_ExcelAPI
                     }
                 }
                 //start ETABS application
+                    //OpenFileDialog ofd = new OpenFileDialog();
+                    //ofd.Title = "Chọn file ETABS";
+                    //ofd.RestoreDirectory = true;
+                    //ofd.Filter = "ETABS File(*.edb)|*.edb";
+                    //var rs = ofd.ShowDialog();
                 MyEtabsObject.ApplicationStart();
+                //MyEtabsObject.SetAsActiveObject();
+
+
             }
 
             //Get a reference to cSapModel to access all API classes and functions
             MySapModel = MyEtabsObject.SapModel;
         }
     }
+}
     public class LoadCombination
     {
         public int NumberNames { get; set; }
@@ -127,4 +137,4 @@ namespace _01.CS_ExcelAPI
         public double M3 { get; set; }
 
     }
-}
+

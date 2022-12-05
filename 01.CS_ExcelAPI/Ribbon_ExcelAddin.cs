@@ -49,9 +49,17 @@ namespace _01.CS_ExcelAPI
             double[] M1 = null;
             double[] M2 = null;
             double[] M3 = null;
+
+
+            int NumberNames = 1;
+            string[] MyName = null;
+            double[] X = null;
+            double[] Y = null;
+            double[] Z = null;
+
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
             int v = SapModel.Results.Setup.SetComboSelectedForOutput("ENVESLS");
-            SapModel.Results.JointReact("42", eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref F1, ref F2, ref F3, ref M1, ref M2, ref M3);
+            SapModel.Results.JointReact("ALL", eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref F1, ref F2, ref F3, ref M1, ref M2, ref M3);
             JointReaction jReactions = new JointReaction();
             jReactions.Name = Name;
             jReactions.LoadCase = "ENVESLS";
@@ -62,6 +70,7 @@ namespace _01.CS_ExcelAPI
             jReactions.M2 = M2[0];
             jReactions.M3 = M3[0];
             JointReaction.Add(jReactions);
+            SapModel.PointObj.GetAllPoints(ref NumberNames, ref MyName, ref X, ref Y, ref Z);
         }
     }
 }
