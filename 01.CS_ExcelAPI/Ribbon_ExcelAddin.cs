@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ETABSv17;
+using Microsoft.Office.Tools.Excel;
+using Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
+using Worksheet = Microsoft.Office.Tools.Excel.Worksheet;
 
 namespace _01.CS_ExcelAPI
 {
@@ -15,6 +19,8 @@ namespace _01.CS_ExcelAPI
         }
         public cOAPI etabModel = null;
         public cSapModel SapModel = null;
+        
+        // ReSharper disable once ArrangeTypeMemberModifiers
         EtabsClass etabsClass = new EtabsClass();
         List<LoadCombination> LoadCombinationsList = new List<LoadCombination>();
         List<JointReaction> JointReaction = new List<JointReaction>();
@@ -34,7 +40,10 @@ namespace _01.CS_ExcelAPI
 
         private void BtnReaction_Click(object sender, RibbonControlEventArgs e)
         {
-            string Name = "";
+            //string Name = "";
+            Excel.Application xlApp = new Application();
+            Excel.Workbook xlwWorkbook = xlApp.ActiveWorkbook;
+            Excel.Worksheet xlWorksheet = xlwWorkbook.ActiveSheet;
 
 
             int NumberResults = 1;
@@ -75,15 +84,13 @@ namespace _01.CS_ExcelAPI
             for (int i= 0; i < MyName.Length; i++)
             {
                 SapModel.Results.JointReact(MyName[i],eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref F1, ref F2, ref F3, ref M1, ref M2, ref M3);
-                jReactions.Name = MyName[i];
-                jReactions.LoadCase = "ENVESLS";
-                jReactions.F1 = F1[0];
-                jReactions.F2 = F2[0];
-                jReactions.F3 = F3[0];
-                jReactions.M1 = M1[0];
-                jReactions.M2 = M2[0];
-                jReactions.M3 = M3[0];
-                JointReaction.Add(jReactions);
+                xlWorksheet.Cells[i + 1, 1] = F1[0];
+                xlWorksheet.Cells[i + 1, 1] = F2[0];
+                xlWorksheet.Cells[i + 1, 1] = F3[0];
+                xlWorksheet.Cells[i + 1, 1] = M1[0];
+                xlWorksheet.Cells[i + 1, 1] = M2[0];
+                xlWorksheet.Cells[i + 1, 1] = M3[0];
+
             }
         }
     }

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ETABSv17;
+using Microsoft.Office.Interop.Excel;
+using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace _01.CS_ExcelAPI
 {
@@ -107,7 +109,7 @@ namespace _01.CS_ExcelAPI
             MySapModel = MyEtabsObject.SapModel;
         }
     }
-}
+
     public class LoadCombination
     {
         public int NumberNames { get; set; }
@@ -137,4 +139,13 @@ namespace _01.CS_ExcelAPI
         public double M3 { get; set; }
 
     }
+
+    public class ExcelClass
+    {
+        _Application excel = new _Excel.Application();
+        Workbook wb;
+        Worksheet ws;
+
+    }
+}
 
