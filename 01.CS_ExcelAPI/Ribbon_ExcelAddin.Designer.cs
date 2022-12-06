@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.Office.Tools.Ribbon;
+
 namespace _01.CS_ExcelAPI
 {
     partial class RibbonExcelAddin : Microsoft.Office.Tools.Ribbon.RibbonBase
@@ -78,14 +80,14 @@ namespace _01.CS_ExcelAPI
             this.comboBoxUnits.Label = "Đơn vị";
             this.comboBoxUnits.MaxLength = 50;
             this.comboBoxUnits.Name = "comboBoxUnits";
-            this.comboBoxUnits.Text = null;
-            this.comboBoxUnits.ItemsLoading += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Combolist);
+            this.comboBoxUnits.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnCheckStruc_Click);
             // 
             // comboBoxComboLoad
             // 
             this.comboBoxComboLoad.Label = "Tổ hợp";
             this.comboBoxComboLoad.MaxLength = 40;
             this.comboBoxComboLoad.Name = "comboBoxComboLoad";
+            this.comboBoxComboLoad.Tag = "";
             this.comboBoxComboLoad.Text = null;
             // 
             // group2
@@ -136,8 +138,10 @@ namespace _01.CS_ExcelAPI
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnCheckStruc;
         internal Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBoxUnits;
-        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBoxComboLoad;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnReaction;
+        public Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBoxComboLoad;
+
+        
     }
 
     partial class ThisRibbonCollection

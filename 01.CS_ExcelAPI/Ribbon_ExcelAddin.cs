@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using ETABSv17;
+using Microsoft.Office;
+using Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -23,6 +26,7 @@ namespace _01.CS_ExcelAPI
         public cOAPI etabModel = null;
         public cSapModel SapModel = null;
         EtabsClass etabsClass = new EtabsClass();
+        public string comboName = "";
 
         //List<LoadCombination> LoadCombinationsList = new List<LoadCombination>();
         //List<JointReaction> JointReaction = new List<JointReaction>();
@@ -33,12 +37,32 @@ namespace _01.CS_ExcelAPI
             etabsClass.SelectEtabs();
             etabModel = etabsClass.MyEtabsObject;
             SapModel = etabsClass.MySapModel;
+            
         }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
         {
+            int NumberNames = 1;
+            string[] MyName = null;
+            eForce forunits = eForce.kN;
+            eLength lengthunits = eLength.m;
+            eTemperature temunits = eTemperature.C;
 
+            SapModel.RespCombo.GetNameList(ref NumberNames, ref MyName);
+            SapModel.GetDatabaseUnits();
+            SapModel.GetDatabaseUnits_2(ref forunits, ref lengthunits, ref temunits);
+            comboBoxUnits.Text = forunits.ToString() + "_" + lengthunits.ToString() + "_" + temunits.ToString();
+            for (int i = 0; i < MyName.Length; i++)
+            {
+                RibbonDropDownItem item = Globals.Factory.GetRibbonFactory().CreateRibbonDropDownItem();
+                item.Label = MyName[i];
+                comboBoxComboLoad.Items.Add(item);
+                string comboNameRibbon = comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
+                //comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
+                comboName = comboNameRibbon;
+            }
         }
+
 
         private void BtnReaction_Click(object sender, RibbonControlEventArgs e)
         {
@@ -60,7 +84,7 @@ namespace _01.CS_ExcelAPI
 
 
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
-            int v = SapModel.Results.Setup.SetComboSelectedForOutput("ENVESLS");
+            int v = SapModel.Results.Setup.SetComboSelectedForOutput(comboName);
             SapModel.PointObj.GetNameListOnStory("Base", ref NumberNames, ref MyName);
             for (int i= 0; i < MyName.Length; i++)
             {
@@ -87,19 +111,5 @@ namespace _01.CS_ExcelAPI
             }
         }
 
-        private void Combolist(object sender, RibbonControlEventArgs e)
-        {
-            int NumberNames = 1;
-            string[] MyName = null;
-            SapModel.RespCombo.GetNameList(ref NumberNames, ref MyName);
-            
-            for (int i=0; i< MyName.Length; i++)
-            {
-                RibbonDropDownItem item = Globals.Factory.GetRibbonFactory().CreateRibbonDropDownItem();
-                item.Label = MyName[i];
-                comboBoxComboLoad.Items.Add(item);
-            }    
-
-        }
     }
 }
