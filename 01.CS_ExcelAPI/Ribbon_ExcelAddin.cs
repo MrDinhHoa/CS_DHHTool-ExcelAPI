@@ -27,6 +27,7 @@ namespace _01.CS_ExcelAPI
         public cSapModel SapModel = null;
         EtabsClass etabsClass = new EtabsClass();
         public string comboName = "";
+        public string comboUnits = "";
 
         //List<LoadCombination> LoadCombinationsList = new List<LoadCombination>();
         //List<JointReaction> JointReaction = new List<JointReaction>();
@@ -42,27 +43,8 @@ namespace _01.CS_ExcelAPI
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
         {
-            int NumberNames = 1;
-            string[] MyName = null;
-            eForce forunits = eForce.kN;
-            eLength lengthunits = eLength.m;
-            eTemperature temunits = eTemperature.C;
-
-            SapModel.RespCombo.GetNameList(ref NumberNames, ref MyName);
-            SapModel.GetDatabaseUnits();
-            SapModel.GetDatabaseUnits_2(ref forunits, ref lengthunits, ref temunits);
-            comboBoxUnits.Text = forunits.ToString() + "_" + lengthunits.ToString() + "_" + temunits.ToString();
-            for (int i = 0; i < MyName.Length; i++)
-            {
-                RibbonDropDownItem item = Globals.Factory.GetRibbonFactory().CreateRibbonDropDownItem();
-                item.Label = MyName[i];
-                comboBoxComboLoad.Items.Add(item);
-                string comboNameRibbon = comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
-                //comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
-                comboName = comboNameRibbon;
-            }
+            
         }
-
 
         private void BtnReaction_Click(object sender, RibbonControlEventArgs e)
         {
@@ -99,17 +81,58 @@ namespace _01.CS_ExcelAPI
                 currentWorksheet.Cells[2 * i + 1, 7] = M2[0];
                 currentWorksheet.Cells[2 * i + 1, 8] = M3[0];
 
-                currentWorksheet.Cells[2 * i + 2, 1] = MyName[i];
-                currentWorksheet.Cells[2 * i + 2, 2] = StepType[1];
-                currentWorksheet.Cells[2 * i + 2, 3] = F1[1];
-                currentWorksheet.Cells[2 * i + 2, 4] = F2[1];
-                currentWorksheet.Cells[2 * i + 2, 5] = F3[1];
-                currentWorksheet.Cells[2 * i + 2, 6] = M1[1];
-                currentWorksheet.Cells[2 * i + 2, 7] = M2[1];
-                currentWorksheet.Cells[2 * i + 2, 8] = M3[1];
+                //currentWorksheet.Cells[2 * i + 2, 1] = MyName[i];
+                //currentWorksheet.Cells[2 * i + 2, 2] = StepType[1];
+                //currentWorksheet.Cells[2 * i + 2, 3] = F1[1];
+                //currentWorksheet.Cells[2 * i + 2, 4] = F2[1];
+                //currentWorksheet.Cells[2 * i + 2, 5] = F3[1];
+                //currentWorksheet.Cells[2 * i + 2, 6] = M1[1];
+                //currentWorksheet.Cells[2 * i + 2, 7] = M2[1];
+                //currentWorksheet.Cells[2 * i + 2, 8] = M3[1];
 
             }
         }
 
+        private void BtnLoadData_Click(object sender, RibbonControlEventArgs e)
+        {
+            int NumberNames = 1;
+            string[] MyName = null;
+            List<eUnits> allUnits = new List<eUnits>();
+                allUnits.Add(eUnits.N_m_C);
+                allUnits.Add(eUnits.N_cm_C);
+                allUnits.Add(eUnits.N_mm_C);
+                allUnits.Add(eUnits.kN_m_C);
+                allUnits.Add(eUnits.kN_cm_C);
+                allUnits.Add(eUnits.kN_mm_C);
+                allUnits.Add(eUnits.Ton_m_C);
+                allUnits.Add(eUnits.Ton_cm_C);
+                allUnits.Add(eUnits.Ton_mm_C);
+                allUnits.Add(eUnits.kgf_m_C);
+                allUnits.Add(eUnits.kgf_cm_C);
+                allUnits.Add(eUnits.kgf_mm_C);
+                allUnits.Add(eUnits.kip_ft_F);
+                allUnits.Add(eUnits.kip_in_F);
+                allUnits.Add(eUnits.lb_ft_F);
+                allUnits.Add(eUnits.lb_in_F);
+
+            for (int i = 0; i < allUnits.Count; i++)
+            {
+                RibbonDropDownItem item = Globals.Factory.GetRibbonFactory().CreateRibbonDropDownItem();
+                item.Label = allUnits[i].ToString();
+                comboBoxUnits.Items.Add(item);
+            }
+            string comboUnitsRibbon = comboBoxUnits.Text = comboBoxUnits.Items[3].Label;
+            comboUnits = comboUnitsRibbon;
+            
+            SapModel.RespCombo.GetNameList(ref NumberNames, ref MyName);
+            for (int i = 0; i < MyName.Length; i++)
+            {
+                RibbonDropDownItem item = Globals.Factory.GetRibbonFactory().CreateRibbonDropDownItem();
+                item.Label = MyName[i];
+                comboBoxComboLoad.Items.Add(item);
+            }
+            string comboNameRibbon = comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
+            comboName = comboNameRibbon;
+        }
     }
 }
