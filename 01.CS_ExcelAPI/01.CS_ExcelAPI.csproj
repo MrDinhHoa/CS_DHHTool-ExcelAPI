@@ -100,8 +100,9 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="ETABSv17">
-      <HintPath>C:\Users\Le Hien\Downloads\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\ETABSv17.dll</HintPath>
+    <Reference Include="ETABSv17, Version=17.0.0.0, Culture=neutral, PublicKeyToken=c5652baf8659117d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\C-Sharp_CSILibrary\ETABSv17.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream">
       <HintPath>C:\Users\Le Hien\Downloads\01. CS_EtabsAPI_ConnectExcelEtabs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
