@@ -86,5 +86,20 @@ namespace _01.CS_ExcelAPI
 
             }
         }
+
+        private void Combolist(object sender, RibbonControlEventArgs e)
+        {
+            int NumberNames = 1;
+            string[] MyName = null;
+            SapModel.RespCombo.GetNameList(ref NumberNames, ref MyName);
+            
+            for (int i=0; i< MyName.Length; i++)
+            {
+                RibbonDropDownItem item = Globals.Factory.GetRibbonFactory().CreateRibbonDropDownItem();
+                item.Label = MyName[i];
+                comboBoxComboLoad.Items.Add(item);
+            }    
+
+        }
     }
 }

@@ -79,6 +79,7 @@ namespace _01.CS_ExcelAPI
             this.comboBoxUnits.MaxLength = 50;
             this.comboBoxUnits.Name = "comboBoxUnits";
             this.comboBoxUnits.Text = null;
+            this.comboBoxUnits.ItemsLoading += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Combolist);
             // 
             // comboBoxComboLoad
             // 
