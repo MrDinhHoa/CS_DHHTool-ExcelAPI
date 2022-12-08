@@ -26,7 +26,7 @@ namespace _01.CS_ExcelAPI
         public cOAPI etabModel = null;
         public cSapModel SapModel = null;
         EtabsClass etabsClass = new EtabsClass();
-        public string comboName = "";
+        public string comboName = "ENVESLS";
         public string comboUnits = "";
 
         //List<LoadCombination> LoadCombinationsList = new List<LoadCombination>();
@@ -38,12 +38,53 @@ namespace _01.CS_ExcelAPI
             etabsClass.SelectEtabs();
             etabModel = etabsClass.MyEtabsObject;
             SapModel = etabsClass.MySapModel;
-            
         }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
         {
-            
+            Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
+            int NumberPointNames = 1;
+            string[] PointName = null;
+            int NumberLevelNames = 1;
+            string[] LevelName = null;
+
+
+
+
+            int NumberResults = 1;
+            string[] Obj = null;
+            string[] Elm = null;
+            string[] LoadCase = null;
+            string[] StepType = null;
+            double[] StepNum = null;
+            double[] U1 = null;
+            double[] U2 = null;
+            double[] U3 = null;
+            double[] R1 = null;
+            double[] R2 = null;
+            double[] R3 = null;
+            SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
+            int v = SapModel.Results.Setup.SetComboSelectedForOutput(comboName);
+            SapModel.Story.GetNameList(ref NumberLevelNames, ref LevelName);
+            for (int i = 0; i < LevelName.Length; i++)
+            {
+                SapModel.PointObj.GetNameListOnStory(LevelName[i], ref NumberPointNames, ref PointName);
+                for (int j = 0; j < PointName.Length; j++)
+                {
+                    SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    currentWorksheet.Cells[j * i + 1, 1] = LevelName[i];
+                    currentWorksheet.Cells[j * i + 1, 2] = PointName[i];
+                    currentWorksheet.Cells[j * i + 1, 3] = StepType[0];
+                    currentWorksheet.Cells[j * i + 1, 4] = U1[0];
+                    currentWorksheet.Cells[j * i + 1, 5] = U2[0];
+                    currentWorksheet.Cells[j * i + 1, 6] = U3[0];
+                    currentWorksheet.Cells[j * i + 1, 7] = R1[0];
+                    currentWorksheet.Cells[j * i + 1, 8] = R2[0];
+                    currentWorksheet.Cells[j * i + 1, 9] = R3[0];
+                }
+
+            }    
+
         }
 
         private void BtnReaction_Click(object sender, RibbonControlEventArgs e)
@@ -74,7 +115,6 @@ namespace _01.CS_ExcelAPI
                 currentWorksheet.Cells[2 * i + 1, 1] = MyName[i];
                 currentWorksheet.Cells[2 * i + 1, 2] = StepType[0];
                 currentWorksheet.Cells[2 * i + 1, 3] = F1[0];
-                currentWorksheet.Cells[2 * i + 1, 4] = F2[0];
                 currentWorksheet.Cells[2 * i + 1, 4] = F2[0];
                 currentWorksheet.Cells[2 * i + 1, 5] = F3[0];
                 currentWorksheet.Cells[2 * i + 1, 6] = M1[0];
@@ -122,7 +162,7 @@ namespace _01.CS_ExcelAPI
                 comboBoxUnits.Items.Add(item);
             }
             string comboUnitsRibbon = comboBoxUnits.Text = comboBoxUnits.Items[3].Label;
-            comboUnits = comboUnitsRibbon;
+            //comboUnits = comboUnitsRibbon;
             
             SapModel.RespCombo.GetNameList(ref NumberNames, ref MyName);
             for (int i = 0; i < MyName.Length; i++)
@@ -132,7 +172,7 @@ namespace _01.CS_ExcelAPI
                 comboBoxComboLoad.Items.Add(item);
             }
             string comboNameRibbon = comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
-            comboName = comboNameRibbon;
+            //comboName = comboNameRibbon;
         }
     }
 }

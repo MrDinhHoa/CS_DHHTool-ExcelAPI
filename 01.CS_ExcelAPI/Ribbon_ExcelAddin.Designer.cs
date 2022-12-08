@@ -39,19 +39,19 @@ namespace _01.CS_ExcelAPI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RibbonExcelAddin));
             this.tab1 = this.Factory.CreateRibbonTab();
+            this.group1 = this.Factory.CreateRibbonGroup();
+            this.BtnSelectEtabs = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
+            this.BtnLoadData = this.Factory.CreateRibbonButton();
             this.comboBoxUnits = this.Factory.CreateRibbonComboBox();
             this.comboBoxComboLoad = this.Factory.CreateRibbonComboBox();
             this.group4 = this.Factory.CreateRibbonGroup();
-            this.BtnSelectEtabs = this.Factory.CreateRibbonButton();
-            this.BtnLoadData = this.Factory.CreateRibbonButton();
             this.BtnCheckStruc = this.Factory.CreateRibbonButton();
             this.BtnReaction = this.Factory.CreateRibbonButton();
-            this.group1 = this.Factory.CreateRibbonGroup();
             this.tab1.SuspendLayout();
+            this.group1.SuspendLayout();
             this.group2.SuspendLayout();
             this.group4.SuspendLayout();
-            this.group1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -63,6 +63,21 @@ namespace _01.CS_ExcelAPI
             this.tab1.Label = "ETABS Connect";
             this.tab1.Name = "tab1";
             // 
+            // group1
+            // 
+            this.group1.Items.Add(this.BtnSelectEtabs);
+            this.group1.Label = "ETABS";
+            this.group1.Name = "group1";
+            // 
+            // BtnSelectEtabs
+            // 
+            this.BtnSelectEtabs.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.BtnSelectEtabs.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelectEtabs.Image")));
+            this.BtnSelectEtabs.Label = "Kết nối ETABS";
+            this.BtnSelectEtabs.Name = "BtnSelectEtabs";
+            this.BtnSelectEtabs.ShowImage = true;
+            this.BtnSelectEtabs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSelectEtabs_Click);
+            // 
             // group2
             // 
             this.group2.Items.Add(this.BtnLoadData);
@@ -70,6 +85,14 @@ namespace _01.CS_ExcelAPI
             this.group2.Items.Add(this.comboBoxComboLoad);
             this.group2.Label = "Dữ liệu ETABS";
             this.group2.Name = "group2";
+            // 
+            // BtnLoadData
+            // 
+            this.BtnLoadData.Image = ((System.Drawing.Image)(resources.GetObject("BtnLoadData.Image")));
+            this.BtnLoadData.Label = "Load dữ liệu";
+            this.BtnLoadData.Name = "BtnLoadData";
+            this.BtnLoadData.ShowImage = true;
+            this.BtnLoadData.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnLoadData_Click);
             // 
             // comboBoxUnits
             // 
@@ -94,23 +117,6 @@ namespace _01.CS_ExcelAPI
             this.group4.Label = "Kiểm tra ổn định kết cấu";
             this.group4.Name = "group4";
             // 
-            // BtnSelectEtabs
-            // 
-            this.BtnSelectEtabs.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.BtnSelectEtabs.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelectEtabs.Image")));
-            this.BtnSelectEtabs.Label = "Kết nối ETABS";
-            this.BtnSelectEtabs.Name = "BtnSelectEtabs";
-            this.BtnSelectEtabs.ShowImage = true;
-            this.BtnSelectEtabs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSelectEtabs_Click);
-            // 
-            // BtnLoadData
-            // 
-            this.BtnLoadData.Image = ((System.Drawing.Image)(resources.GetObject("BtnLoadData.Image")));
-            this.BtnLoadData.Label = "Load dữ liệu";
-            this.BtnLoadData.Name = "BtnLoadData";
-            this.BtnLoadData.ShowImage = true;
-            this.BtnLoadData.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnLoadData_Click);
-            // 
             // BtnCheckStruc
             // 
             this.BtnCheckStruc.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -129,12 +135,6 @@ namespace _01.CS_ExcelAPI
             this.BtnReaction.ShowImage = true;
             this.BtnReaction.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnReaction_Click);
             // 
-            // group1
-            // 
-            this.group1.Items.Add(this.BtnSelectEtabs);
-            this.group1.Label = "ETABS";
-            this.group1.Name = "group1";
-            // 
             // RibbonExcelAddin
             // 
             this.Name = "RibbonExcelAddin";
@@ -143,12 +143,12 @@ namespace _01.CS_ExcelAPI
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
+            this.group1.ResumeLayout(false);
+            this.group1.PerformLayout();
             this.group2.ResumeLayout(false);
             this.group2.PerformLayout();
             this.group4.ResumeLayout(false);
             this.group4.PerformLayout();
-            this.group1.ResumeLayout(false);
-            this.group1.PerformLayout();
             this.ResumeLayout(false);
 
         }
