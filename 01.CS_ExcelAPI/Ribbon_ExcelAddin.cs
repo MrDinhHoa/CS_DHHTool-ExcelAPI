@@ -47,7 +47,14 @@ namespace _01.CS_ExcelAPI
             string[] PointName = null;
             int NumberLevelNames = 1;
             string[] LevelName = null;
-
+            int NumberStories = 1;
+            string[] StoryName = null;
+            double[] StoryHeight = null;
+            double[] StoryElevation = null;
+            bool[] IsMasterstory = null;
+            string[] SimilarToStrory = null;
+            bool[] SpiliceAbove = null;
+            double[] SpliceHeight = null;
 
 
 
@@ -63,12 +70,34 @@ namespace _01.CS_ExcelAPI
             double[] R1 = null;
             double[] R2 = null;
             double[] R3 = null;
+
+
+            List<string> levelName = new List<string>();
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
             int v = SapModel.Results.Setup.SetComboSelectedForOutput(comboName);
             SapModel.Story.GetNameList(ref NumberLevelNames, ref LevelName);
-            for (int i = 0; i < LevelName.Length; i++)
+            SapModel.Story.GetStories(ref NumberStories, ref StoryName, ref StoryHeight, ref StoryElevation,
+                ref IsMasterstory,
+                ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
+            for (int i = 0; i < StoryName.Length; i++)
+            {
+                for (int j = i+1; j < StoryName.Length; j++)
+                {
+                    if (StoryElevation[i]>StoryElevation[j])
+                    {
+                        string tempName = StoryName[i];
+                        double tempElevation = StoryElevation[i];
+                        StoryName[i] = StoryName[j];
+                        StoryElevation[i] = StoryElevation[j];
+                        StoryName[j] = tempName;
+                        StoryElevation[j] = tempElevation;
+                    }
+                }
+            }
+            for (int i = 0; i < StoryName.Length; i++)
             {
                 SapModel.PointObj.GetNameListOnStory(LevelName[i], ref NumberPointNames, ref PointName);
+                
                 for (int j = 0; j < PointName.Length; j++)
                 {
                     SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
