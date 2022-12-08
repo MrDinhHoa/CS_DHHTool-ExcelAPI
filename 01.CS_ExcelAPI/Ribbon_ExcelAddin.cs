@@ -79,37 +79,38 @@ namespace _01.CS_ExcelAPI
             SapModel.Story.GetStories(ref NumberStories, ref StoryName, ref StoryHeight, ref StoryElevation,
                 ref IsMasterstory,
                 ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
+            //for (int i = 0; i < StoryName.Length; i++)
+            //{
+            //    for (int j = i+1; j < StoryName.Length; j++)
+            //    {
+            //        if (StoryElevation[i]>StoryElevation[j])
+            //        {
+            //            string tempName = StoryName[i];
+            //            double tempElevation = StoryElevation[i];
+            //            StoryName[i] = StoryName[j];
+            //            StoryElevation[i] = StoryElevation[j];
+            //            StoryName[j] = tempName;
+            //            StoryElevation[j] = tempElevation;
+            //        }
+            //    }
+            //}
+
             for (int i = 0; i < StoryName.Length; i++)
             {
-                for (int j = i+1; j < StoryName.Length; j++)
-                {
-                    if (StoryElevation[i]>StoryElevation[j])
-                    {
-                        string tempName = StoryName[i];
-                        double tempElevation = StoryElevation[i];
-                        StoryName[i] = StoryName[j];
-                        StoryElevation[i] = StoryElevation[j];
-                        StoryName[j] = tempName;
-                        StoryElevation[j] = tempElevation;
-                    }
-                }
-            }
-            for (int i = 0; i < StoryName.Length; i++)
-            {
-                SapModel.PointObj.GetNameListOnStory(LevelName[i], ref NumberPointNames, ref PointName);
+                SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref PointName);
                 
                 for (int j = 0; j < PointName.Length; j++)
                 {
                     SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                    currentWorksheet.Cells[j * i + 1, 1] = LevelName[i];
-                    currentWorksheet.Cells[j * i + 1, 2] = PointName[i];
-                    currentWorksheet.Cells[j * i + 1, 3] = StepType[0];
-                    currentWorksheet.Cells[j * i + 1, 4] = U1[0];
-                    currentWorksheet.Cells[j * i + 1, 5] = U2[0];
-                    currentWorksheet.Cells[j * i + 1, 6] = U3[0];
-                    currentWorksheet.Cells[j * i + 1, 7] = R1[0];
-                    currentWorksheet.Cells[j * i + 1, 8] = R2[0];
-                    currentWorksheet.Cells[j * i + 1, 9] = R3[0];
+                    currentWorksheet.Cells[j * (i + 1), 1] = StoryName[i];
+                    currentWorksheet.Cells[j * (i + 1), 2] = PointName[i];
+                    currentWorksheet.Cells[j * (i + 1), 3] = StepType[0];
+                    currentWorksheet.Cells[j * (i + 1), 4] = U1[0];
+                    currentWorksheet.Cells[j * (i + 1), 5] = U2[0];
+                    currentWorksheet.Cells[j * (i + 1), 6] = U3[0];
+                    currentWorksheet.Cells[j * (i + 1), 7] = R1[0];
+                    currentWorksheet.Cells[j * (i + 1), 8] = R2[0];
+                    currentWorksheet.Cells[j * (i + 1), 9] = R3[0];
                 }
 
             }    
