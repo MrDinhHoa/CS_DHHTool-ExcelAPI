@@ -44,6 +44,7 @@ namespace _01.CS_ExcelAPI
         {
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
             int NumberPointNames = 1;
+            string labelName = null;
             string[] PointName = null;
             int NumberLevelNames = 1;
             string[] LevelName = null;
@@ -107,24 +108,59 @@ namespace _01.CS_ExcelAPI
 
             for (int i = 1; i < StoryName.Length; i++)
             {
-                SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref PointName);
-
+                SapModel.PointObj.GetNameFromLabel(labelName, StoryName[i], ref PointName);
                 List<string> storyNameMemb = new List<string>();
+                List<string> pointNameMemb = new List<string>();
+                List<double> U1Member = new List<double>();
+                List<double> U2Member = new List<double>();
+                List<double> U3Member = new List<double>();
+                List<double> R1Member = new List<double>();
+                List<double> R2Member = new List<double>();
+                List<double> R3Member = new List<double>();
+
                 for (int j = 0; j < PointName.Length; j++)
                 {
-                    SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                    storyNameMemb.Add(PointName[i]);
+                    SapModel.Results.JointDispl(PointName[j], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    storyNameMemb.Add(StoryName[i]);
+                    pointNameMemb.Add(PointName[j]);
+                    U1Member.Add(U1[0]);
+                    U2Member.Add(U2[0]);
+                    U3Member.Add(U3[0]);
+                    R1Member.Add(R1[0]);
+                    R2Member.Add(R2[0]);
+                    R3Member.Add(R3[0]);
                 }
+
                 storyNameList.Add(storyNameMemb);
+                pointNameList.Add(pointNameMemb);
+                U1list.Add(U1Member);
+                U2list.Add(U1Member);
+                U3list.Add(U1Member);
+                R1list.Add(R1Member);
+                R2list.Add(R2Member);
+                R3list.Add(R3Member);
+
             }
             
-            List<string> result = storyNameList.SelectMany(i => i).ToList();
-            for (int i = 0; i < result.Count(); i++)
+            List<string> resltstoName = storyNameList.SelectMany(i => i).ToList();
+            List<string> resltpointName = pointNameList.SelectMany(i => i).ToList();
+            List<double> reslU1 = U1list.SelectMany(i => i).ToList();
+            List<double> reslU2 = U2list.SelectMany(i => i).ToList();
+            List<double> reslU3 = U3list.SelectMany(i => i).ToList();
+            List<double> reslR1 = R1list.SelectMany(i => i).ToList();
+            List<double> reslR2 = R2list.SelectMany(i => i).ToList();
+            List<double> reslR3 = R3list.SelectMany(i => i).ToList();
+            for (int i = 0; i < resltstoName.Count(); i++)
             {
-                currentWorksheet.Cells[i + 1, 1] = result[i];
-            }    
-
-
+                currentWorksheet.Cells[i + 1, 1] = resltstoName[i];
+                currentWorksheet.Cells[i + 1, 2] = resltpointName[i];
+                currentWorksheet.Cells[i + 1, 3] = reslU1[i];
+                currentWorksheet.Cells[i + 1, 4] = reslU2[i];
+                currentWorksheet.Cells[i + 1, 5] = reslU3[i];
+                currentWorksheet.Cells[i + 1, 6] = reslR1[i];
+                currentWorksheet.Cells[i + 1, 7] = reslR2[i];
+                currentWorksheet.Cells[i + 1, 8] = reslR3[i];
+            }
         }
 
         private void BtnReaction_Click(object sender, RibbonControlEventArgs e)
