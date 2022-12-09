@@ -95,25 +95,35 @@ namespace _01.CS_ExcelAPI
             //    }
             //}
 
+            List<List<string>> storyNameList = new List<List<string>>();
+            List<List<string>> pointNameList = new List<List<string>>();
+            List<List<string>> steptypeList = new List<List<string>>();
+            List<List<double>> U1list = new List<List<double>>();
+            List<List<double>> U2list = new List<List<double>>();
+            List<List<double>> U3list = new List<List<double>>();
+            List<List<double>> R1list = new List<List<double>>();
+            List<List<double>> R2list = new List<List<double>>();
+            List<List<double>> R3list = new List<List<double>>();
 
             for (int i = 1; i < StoryName.Length; i++)
             {
                 SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref PointName);
+
+                List<string> storyNameMemb = new List<string>();
                 for (int j = 0; j < PointName.Length; j++)
                 {
                     SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                    currentWorksheet.Cells[PointName.Length  * (i - 1) + j+ 1, 1] = StoryName[i];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 2] = PointName[i];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 3] = StepType[0];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 4] = U1[0];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 5] = U2[0];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 6] = U3[0];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 7] = R1[0];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 8] = R2[0];
-                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 9] = R3[0];
+                    storyNameMemb.Add(PointName[i]);
                 }
-
+                storyNameList.Add(storyNameMemb);
+            }
+            
+            List<string> result = storyNameList.SelectMany(i => i).ToList();
+            for (int i = 0; i < result.Count(); i++)
+            {
+                currentWorksheet.Cells[i + 1, 1] = result[i];
             }    
+
 
         }
 
