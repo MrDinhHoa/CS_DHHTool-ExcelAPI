@@ -95,37 +95,22 @@ namespace _01.CS_ExcelAPI
             //    }
             //}
 
-            for (int i = 0; i < StoryName.Length; i++)
+
+            for (int i = 1; i < StoryName.Length; i++)
             {
                 SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref PointName);
                 for (int j = 0; j < PointName.Length; j++)
                 {
-                    if(i==0)
-                    {
-                        SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                        currentWorksheet.Cells[j + 1, 1] = StoryName[i];
-                        currentWorksheet.Cells[j + 1, 2] = PointName[i];
-                        currentWorksheet.Cells[j + 1, 3] = StepType[0];
-                        currentWorksheet.Cells[j + 1, 4] = U1[0];
-                        currentWorksheet.Cells[j + 1, 5] = U2[0];
-                        currentWorksheet.Cells[j + 1, 6] = U3[0];
-                        currentWorksheet.Cells[j + 1, 7] = R1[0];
-                        currentWorksheet.Cells[j + 1, 8] = R2[0];
-                        currentWorksheet.Cells[j + 1, 9] = R3[0];
-                    }    
-                    else
-                    {
-                        SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                        currentWorksheet.Cells[j * i + 1, 1] = StoryName[i];
-                        currentWorksheet.Cells[j * i + 1, 2] = PointName[i];
-                        currentWorksheet.Cells[j * i + 1, 3] = StepType[0];
-                        currentWorksheet.Cells[j * i + 1, 4] = U1[0];
-                        currentWorksheet.Cells[j * i + 1, 5] = U2[0];
-                        currentWorksheet.Cells[j * i + 1, 6] = U3[0];
-                        currentWorksheet.Cells[j * i + 1, 7] = R1[0];
-                        currentWorksheet.Cells[j * i + 1, 8] = R2[0];
-                        currentWorksheet.Cells[j * i + 1, 9] = R3[0];
-                    }    
+                    SapModel.Results.JointDispl(PointName[i], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    currentWorksheet.Cells[PointName.Length  * (i - 1) + j+ 1, 1] = StoryName[i];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 2] = PointName[i];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 3] = StepType[0];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 4] = U1[0];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 5] = U2[0];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 6] = U3[0];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 7] = R1[0];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 8] = R2[0];
+                    currentWorksheet.Cells[PointName.Length * (i - 1) + j + 1, 9] = R3[0];
                 }
 
             }    
