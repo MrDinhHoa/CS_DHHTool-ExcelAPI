@@ -44,7 +44,8 @@ namespace _01.CS_ExcelAPI
         {
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
             int NumberPointNames = 1;
-            string labelName = null;
+            string[] uniqueName = null;
+            string[] labelName = null;
             string[] PointName = null;
             int NumberLevelNames = 1;
             string[] LevelName = null;
@@ -80,21 +81,7 @@ namespace _01.CS_ExcelAPI
             SapModel.Story.GetStories(ref NumberStories, ref StoryName, ref StoryHeight, ref StoryElevation,
                 ref IsMasterstory,
                 ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
-            //for (int i = 0; i < StoryName.Length; i++)
-            //{
-            //    for (int j = i+1; j < StoryName.Length; j++)
-            //    {
-            //        if (StoryElevation[i]>StoryElevation[j])
-            //        {
-            //            string tempName = StoryName[i];
-            //            double tempElevation = StoryElevation[i];
-            //            StoryName[i] = StoryName[j];
-            //            StoryElevation[i] = StoryElevation[j];
-            //            StoryName[j] = tempName;
-            //            StoryElevation[j] = tempElevation;
-            //        }
-            //    }
-            //}
+
 
             List<List<string>> storyNameList = new List<List<string>>();
             List<List<string>> pointNameList = new List<List<string>>();
@@ -108,7 +95,8 @@ namespace _01.CS_ExcelAPI
 
             for (int i = 1; i < StoryName.Length; i++)
             {
-                SapModel.PointObj.GetNameFromLabel(labelName, StoryName[i], ref PointName);
+                SapModel.PointObj.GetLabelNameList(ref NumberPointNames, ref uniqueName, ref labelName,ref StoryName);
+                SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref uniqueName);
                 List<string> storyNameMemb = new List<string>();
                 List<string> pointNameMemb = new List<string>();
                 List<double> U1Member = new List<double>();
