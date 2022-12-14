@@ -43,13 +43,10 @@ namespace _01.CS_ExcelAPI
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
         {
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
+            
             int NumberPointNames = 1;
             string[] uniqueName = null;
-            string[] labelName = null;
-            string[] PointName = null;
-            int NumberLevelNames = 1;
-            string[] LevelName = null;
-            int NumberStories = 1;
+            int StoryNumber = 1;
             string[] StoryName = null;
             double[] StoryHeight = null;
             double[] StoryElevation = null;
@@ -73,16 +70,12 @@ namespace _01.CS_ExcelAPI
             double[] R2 = null;
             double[] R3 = null;
 
-
+            
             List<string> levelName = new List<string>();
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
             int v = SapModel.Results.Setup.SetComboSelectedForOutput(comboName);
-            SapModel.Story.GetNameList(ref NumberLevelNames, ref LevelName);
-            SapModel.Story.GetStories(ref NumberStories, ref StoryName, ref StoryHeight, ref StoryElevation,
-                ref IsMasterstory,
-                ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
-
-
+            SapModel.Story.GetStories(ref StoryNumber, ref StoryName, ref StoryElevation, ref StoryHeight,
+                ref IsMasterstory, ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
             List<List<string>> storyNameList = new List<List<string>>();
             List<List<string>> pointNameList = new List<List<string>>();
             List<List<string>> steptypeList = new List<List<string>>();
@@ -95,8 +88,6 @@ namespace _01.CS_ExcelAPI
 
             for (int i = 1; i < StoryName.Length; i++)
             {
-                SapModel.PointObj.GetLabelNameList(ref NumberPointNames, ref uniqueName, ref labelName,ref StoryName);
-                SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref uniqueName);
                 List<string> storyNameMemb = new List<string>();
                 List<string> pointNameMemb = new List<string>();
                 List<double> U1Member = new List<double>();
@@ -106,18 +97,35 @@ namespace _01.CS_ExcelAPI
                 List<double> R2Member = new List<double>();
                 List<double> R3Member = new List<double>();
 
-                for (int j = 0; j < PointName.Length; j++)
+                List<double> jointDisplacement = new List<double>(); 
+
+                SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref uniqueName);
+                //Lấy chuyển vị tất cả các point
+                for (int j = 0; j < uniqueName.Length; j++)
                 {
-                    SapModel.Results.JointDispl(PointName[j], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    SapModel.Results.JointDispl(uniqueName[j], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
                     storyNameMemb.Add(StoryName[i]);
-                    pointNameMemb.Add(PointName[j]);
+                    pointNameMemb.Add(uniqueName[j]);
                     U1Member.Add(U1[0]);
                     U2Member.Add(U2[0]);
                     U3Member.Add(U3[0]);
                     R1Member.Add(R1[0]);
                     R2Member.Add(R2[0]);
                     R3Member.Add(R3[0]);
+
+                    jointDisplacement.Add(U1[0]);
+                    jointDisplacement.Add(U1[1]);
+                    jointDisplacement.Add(U2[0]);
+                    jointDisplacement.Add(U2[1]);
+                    jointDisplacement.Add(U3[0]);
+                    jointDisplacement.Add(U3[1]);
                 }
+
+                currentWorksheet.Cells[i, 13] = StoryName[i];
+                currentWorksheet.Cells[i, 14] = StoryElevation[i];
+                currentWorksheet.Cells[i, 15] = jointDisplacement.Max();
+                currentWorksheet.Cells[i, 16] = jointDisplacement.Min();
+
 
                 storyNameList.Add(storyNameMemb);
                 pointNameList.Add(pointNameMemb);
@@ -127,6 +135,12 @@ namespace _01.CS_ExcelAPI
                 R1list.Add(R1Member);
                 R2list.Add(R2Member);
                 R3list.Add(R3Member);
+
+                //Lấy chuyển vị point lớn nhất tại mỗi tầng
+                for (int k = 0; k < uniqueName.Length; k++)
+                {
+
+                }
 
             }
             

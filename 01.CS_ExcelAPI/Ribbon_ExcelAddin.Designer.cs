@@ -99,7 +99,7 @@ namespace _01.CS_ExcelAPI
             this.comboBoxUnits.Label = "Đơn vị";
             this.comboBoxUnits.MaxLength = 40;
             this.comboBoxUnits.Name = "comboBoxUnits";
-            this.comboBoxUnits.Text = null;
+            this.comboBoxUnits.Text = "unitsSelect";
             this.comboBoxUnits.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnCheckStruc_Click);
             // 
             // comboBoxComboLoad
