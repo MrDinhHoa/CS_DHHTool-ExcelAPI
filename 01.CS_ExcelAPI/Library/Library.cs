@@ -110,6 +110,7 @@ namespace _01.CS_ExcelAPI
             MySapModel = MyEtabsObject.SapModel;
         }
     }
+
     public class LoadCombination
     {
         public int NumberNames { get; set; }

@@ -39,6 +39,12 @@ namespace _01.CS_ExcelAPI
             etabModel = etabsClass.MyEtabsObject;
             SapModel = etabsClass.MySapModel;
         }
+        private void BtnSelectSafe_Click(object sender, RibbonControlEventArgs e)
+        {
+            etabsClass.SelectEtabs();
+            etabModel = etabsClass.MyEtabsObject;
+            SapModel = etabsClass.MySapModel;
+        }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
         {
@@ -126,7 +132,6 @@ namespace _01.CS_ExcelAPI
                 currentWorksheet.Cells[i, 15] = jointDisplacement.Max();
                 currentWorksheet.Cells[i, 16] = jointDisplacement.Min();
 
-
                 storyNameList.Add(storyNameMemb);
                 pointNameList.Add(pointNameMemb);
                 U1list.Add(U1Member);
@@ -165,7 +170,7 @@ namespace _01.CS_ExcelAPI
             }
         }
 
-        private void BtnReaction_Click(object sender, RibbonControlEventArgs e)
+        private void BtnEtabsReaction_Click(object sender, RibbonControlEventArgs e)
         {
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
             int NumberResults = 1;
@@ -252,5 +257,7 @@ namespace _01.CS_ExcelAPI
             string comboNameRibbon = comboBoxComboLoad.Text = comboBoxComboLoad.Items[0].Label;
             //comboName = comboNameRibbon;
         }
+
+
     }
 }

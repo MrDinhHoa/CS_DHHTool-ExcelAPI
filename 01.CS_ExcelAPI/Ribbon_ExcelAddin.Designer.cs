@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Office.Tools.Ribbon;
+using System;
 
 namespace _01.CS_ExcelAPI
 {
@@ -83,7 +84,7 @@ namespace _01.CS_ExcelAPI
             this.group2.Items.Add(this.BtnLoadData);
             this.group2.Items.Add(this.comboBoxUnits);
             this.group2.Items.Add(this.comboBoxComboLoad);
-            this.group2.Label = "Dữ liệu ETABS";
+            this.group2.Label = "Dữ liệu";
             this.group2.Name = "group2";
             // 
             // BtnLoadData
@@ -133,7 +134,7 @@ namespace _01.CS_ExcelAPI
             this.BtnReaction.Label = "Phản lực chân cột";
             this.BtnReaction.Name = "BtnReaction";
             this.BtnReaction.ShowImage = true;
-            this.BtnReaction.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnReaction_Click);
+            this.BtnReaction.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnEtabsReaction_Click);
             // 
             // RibbonExcelAddin
             // 
@@ -152,6 +153,7 @@ namespace _01.CS_ExcelAPI
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 
