@@ -100,6 +100,9 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="CSiAPIv1">
+      <HintPath>..\..\C-Sharp_CSI Library\CSiAPIv1.dll</HintPath>
+    </Reference>
     <Reference Include="ETABSv17, Version=17.0.0.0, Culture=neutral, PublicKeyToken=c5652baf8659117d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\C-Sharp_CSILibrary\ETABSv17.dll</HintPath>
@@ -163,7 +166,8 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="Library\Library.cs" />
+    <Compile Include="Library\LibrarySAP.cs" />
+    <Compile Include="Library\LibraryEtabs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -258,6 +258,9 @@ namespace _01.CS_ExcelAPI
             //comboName = comboNameRibbon;
         }
 
+        private void BtnAmVClick(object sender, RibbonControlEventArgs e)
+        {
 
+        }
     }
 }

@@ -111,6 +111,8 @@ namespace _01.CS_ExcelAPI
         }
     }
 
+    
+
     public class LoadCombination
     {
         public int NumberNames { get; set; }

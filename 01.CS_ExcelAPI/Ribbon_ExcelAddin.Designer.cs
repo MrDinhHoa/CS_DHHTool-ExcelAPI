@@ -49,6 +49,7 @@ namespace _01.CS_ExcelAPI
             this.group4 = this.Factory.CreateRibbonGroup();
             this.BtnCheckStruc = this.Factory.CreateRibbonButton();
             this.BtnReaction = this.Factory.CreateRibbonButton();
+            this.Btn_AmV = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -115,6 +116,7 @@ namespace _01.CS_ExcelAPI
             // 
             this.group4.Items.Add(this.BtnCheckStruc);
             this.group4.Items.Add(this.BtnReaction);
+            this.group4.Items.Add(this.Btn_AmV);
             this.group4.Label = "Kiểm tra ổn định kết cấu";
             this.group4.Name = "group4";
             // 
@@ -135,6 +137,14 @@ namespace _01.CS_ExcelAPI
             this.BtnReaction.Name = "BtnReaction";
             this.BtnReaction.ShowImage = true;
             this.BtnReaction.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnEtabsReaction_Click);
+            // 
+            // Btn_AmV
+            // 
+            this.Btn_AmV.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Btn_AmV.Label = "button1";
+            this.Btn_AmV.Name = "Btn_AmV";
+            this.Btn_AmV.ShowImage = true;
+            this.Btn_AmV.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnAmVClick);
             // 
             // RibbonExcelAddin
             // 
@@ -167,6 +177,7 @@ namespace _01.CS_ExcelAPI
         public Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBoxComboLoad;
         internal RibbonButton BtnSelectEtabs;
         internal RibbonGroup group1;
+        internal RibbonButton Btn_AmV;
     }
 
     partial class ThisRibbonCollection
