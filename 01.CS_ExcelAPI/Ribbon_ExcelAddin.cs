@@ -48,6 +48,7 @@ namespace _01.CS_ExcelAPI
         {
             sapClass.SelectSAP();
             MySapModel = sapClass.mySapModel;
+
         }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
@@ -264,9 +265,17 @@ namespace _01.CS_ExcelAPI
 
         private void BtnAmVClick(object sender, RibbonControlEventArgs e)
         {
-            MySapModel.FrameObj.SetSelected("ALL", true, eItemType.Group);
+            int I = MySapModel.FrameObj.SetSelected("ALL", true, eItemType.Group);
+            MySapModel.SelectObj.ClearSelection();
+            
+            int NumberNames = 1;
+            int[] Object = null;
+            string[] MyName = null;
+            MySapModel.SelectObj.GetSelected(ref NumberNames, ref Object, ref MyName);
+
+
         }
 
-        
+
     }
 }

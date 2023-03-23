@@ -41,13 +41,13 @@ namespace _01.CS_ExcelAPI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RibbonExcelAddin));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.BtnSelectEtabs = this.Factory.CreateRibbonButton();
+            this.BtnSAP = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
+            this.BtnLoadData = this.Factory.CreateRibbonButton();
             this.comboBoxUnits = this.Factory.CreateRibbonComboBox();
             this.comboBoxComboLoad = this.Factory.CreateRibbonComboBox();
             this.group4 = this.Factory.CreateRibbonGroup();
-            this.BtnSelectEtabs = this.Factory.CreateRibbonButton();
-            this.BtnSAP = this.Factory.CreateRibbonButton();
-            this.BtnLoadData = this.Factory.CreateRibbonButton();
             this.BtnCheckStruc = this.Factory.CreateRibbonButton();
             this.BtnReaction = this.Factory.CreateRibbonButton();
             this.Btn_AmV = this.Factory.CreateRibbonButton();
@@ -73,6 +73,24 @@ namespace _01.CS_ExcelAPI
             this.group1.Label = "ETABS - SAP";
             this.group1.Name = "group1";
             // 
+            // BtnSelectEtabs
+            // 
+            this.BtnSelectEtabs.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.BtnSelectEtabs.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelectEtabs.Image")));
+            this.BtnSelectEtabs.Label = "Kết nối ETABS";
+            this.BtnSelectEtabs.Name = "BtnSelectEtabs";
+            this.BtnSelectEtabs.ShowImage = true;
+            this.BtnSelectEtabs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSelectEtabs_Click);
+            // 
+            // BtnSAP
+            // 
+            this.BtnSAP.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.BtnSAP.Image = ((System.Drawing.Image)(resources.GetObject("BtnSAP.Image")));
+            this.BtnSAP.Label = "Kết nối SAP2000";
+            this.BtnSAP.Name = "BtnSAP";
+            this.BtnSAP.ShowImage = true;
+            this.BtnSAP.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSAP_Click);
+            // 
             // group2
             // 
             this.group2.Items.Add(this.BtnLoadData);
@@ -80,6 +98,14 @@ namespace _01.CS_ExcelAPI
             this.group2.Items.Add(this.comboBoxComboLoad);
             this.group2.Label = "Dữ liệu";
             this.group2.Name = "group2";
+            // 
+            // BtnLoadData
+            // 
+            this.BtnLoadData.Image = ((System.Drawing.Image)(resources.GetObject("BtnLoadData.Image")));
+            this.BtnLoadData.Label = "Load dữ liệu";
+            this.BtnLoadData.Name = "BtnLoadData";
+            this.BtnLoadData.ShowImage = true;
+            this.BtnLoadData.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnLoadData_Click);
             // 
             // comboBoxUnits
             // 
@@ -104,32 +130,6 @@ namespace _01.CS_ExcelAPI
             this.group4.Items.Add(this.Btn_AmV);
             this.group4.Label = "Kiểm tra ổn định kết cấu";
             this.group4.Name = "group4";
-            // 
-            // BtnSelectEtabs
-            // 
-            this.BtnSelectEtabs.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.BtnSelectEtabs.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelectEtabs.Image")));
-            this.BtnSelectEtabs.Label = "Kết nối ETABS";
-            this.BtnSelectEtabs.Name = "BtnSelectEtabs";
-            this.BtnSelectEtabs.ShowImage = true;
-            this.BtnSelectEtabs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSelectEtabs_Click);
-            // 
-            // BtnSAP
-            // 
-            this.BtnSAP.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.BtnSAP.Image = ((System.Drawing.Image)(resources.GetObject("BtnSAP.Image")));
-            this.BtnSAP.Label = "Kết nối SAP2000";
-            this.BtnSAP.Name = "BtnSAP";
-            this.BtnSAP.ShowImage = true;
-            this.BtnSAP.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnSAP_Click);
-            // 
-            // BtnLoadData
-            // 
-            this.BtnLoadData.Image = ((System.Drawing.Image)(resources.GetObject("BtnLoadData.Image")));
-            this.BtnLoadData.Label = "Load dữ liệu";
-            this.BtnLoadData.Name = "BtnLoadData";
-            this.BtnLoadData.ShowImage = true;
-            this.BtnLoadData.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnLoadData_Click);
             // 
             // BtnCheckStruc
             // 

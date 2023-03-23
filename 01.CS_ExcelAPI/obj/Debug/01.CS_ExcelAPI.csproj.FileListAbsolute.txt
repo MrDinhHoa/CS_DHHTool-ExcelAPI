@@ -80,3 +80,4 @@ D:\STUDY\Programming\C-Sharp\CS_EtabsExcelAPI_DHHTool\01.CS_ExcelAPI\obj\Debug\0
 D:\STUDY\Programming\C-Sharp\CS_EtabsExcelAPI_DHHTool\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.csproj.CopyComplete
 D:\STUDY\Programming\C-Sharp\CS_EtabsExcelAPI_DHHTool\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.dll
 D:\STUDY\Programming\C-Sharp\CS_EtabsExcelAPI_DHHTool\01.CS_ExcelAPI\obj\Debug\01.CS_ExcelAPI.pdb
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\CSiAPIv1.dll

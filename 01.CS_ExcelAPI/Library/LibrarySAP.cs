@@ -43,7 +43,7 @@ namespace _01.CS_ExcelAPI
             cOAPI mySapObject = null;
             //Use ret to check if functions return successfully (ret = 0) or fail (ret = nonzero)
             int ret = 0;
-            if (AttachToInstance)
+            if (AttachToInstance == false)
             {
                 //attach to a running instance of SAP2000
                 try
@@ -106,10 +106,11 @@ namespace _01.CS_ExcelAPI
 
                 }
                 //start SAP2000 application
-                ret = mySapObject.ApplicationStart();
+                mySapObject.SetAsActiveObject();
 
             }
             mySapModel = mySapObject.SapModel;
+
         }
 
         public class LoadCombinationSap
