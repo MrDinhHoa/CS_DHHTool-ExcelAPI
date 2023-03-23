@@ -101,7 +101,7 @@
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="CSiAPIv1">
-      <HintPath>..\..\C-Sharp_CSI Library\CSiAPIv1.dll</HintPath>
+      <HintPath>C:\Program Files\Computers and Structures\SAP2000 22\CSiAPIv1.dll</HintPath>
     </Reference>
     <Reference Include="ETABSv17, Version=17.0.0.0, Culture=neutral, PublicKeyToken=c5652baf8659117d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

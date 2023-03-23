@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using ETABSv17;
 using Microsoft.Office;
 using Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Interop.Excel;
+using eItemType = CSiAPIv1.eItemType;
 using Excel = Microsoft.Office.Interop.Excel;
 using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 // ReSharper disable All
@@ -25,7 +27,9 @@ namespace _01.CS_ExcelAPI
         }
         public cOAPI etabModel = null;
         public cSapModel SapModel = null;
+        public CSiAPIv1.cSapModel MySapModel = null;
         EtabsClass etabsClass = new EtabsClass();
+        SapClass sapClass = new SapClass();
         public string comboName = "ENVESLS";
         public string comboUnits = "";
 
@@ -39,11 +43,11 @@ namespace _01.CS_ExcelAPI
             etabModel = etabsClass.MyEtabsObject;
             SapModel = etabsClass.MySapModel;
         }
-        private void BtnSelectSafe_Click(object sender, RibbonControlEventArgs e)
+
+        private void BtnSAP_Click(object sender, RibbonControlEventArgs e)
         {
-            etabsClass.SelectEtabs();
-            etabModel = etabsClass.MyEtabsObject;
-            SapModel = etabsClass.MySapModel;
+            sapClass.SelectSAP();
+            MySapModel = sapClass.mySapModel;
         }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
@@ -260,7 +264,9 @@ namespace _01.CS_ExcelAPI
 
         private void BtnAmVClick(object sender, RibbonControlEventArgs e)
         {
-
+            MySapModel.FrameObj.SetSelected("ALL", true, eItemType.Group);
         }
+
+        
     }
 }
