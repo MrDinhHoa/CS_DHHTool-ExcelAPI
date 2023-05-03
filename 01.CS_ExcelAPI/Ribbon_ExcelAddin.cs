@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using ETABSv17;
 using Microsoft.Office;
-using Microsoft.Office.Core;
+using Microsoft.Office.Core;    
 using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Interop.Excel;
 using eItemType = CSiAPIv1.eItemType;
