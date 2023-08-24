@@ -40,8 +40,8 @@ namespace _01.CS_ExcelAPI
         private void BtnSelectEtabs_Click(object sender, RibbonControlEventArgs e)
         {
             etabsClass.SelectEtabs();
-            etabModel = etabsClass.MyEtabsObject;
-            SapModel = etabsClass.MySapModel;
+            etabModel = (cOAPI)etabsClass.MyEtabsObject;
+            SapModel = (cSapModel)etabsClass.MySapModel;
         }
 
         private void BtnSAP_Click(object sender, RibbonControlEventArgs e)
