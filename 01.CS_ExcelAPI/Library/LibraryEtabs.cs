@@ -116,9 +116,6 @@ namespace _01.CS_ExcelAPI
             MessageBox.Show("Đã kết nối ETABS");
         }
     }
-
-    
-
     public class LoadCombination
     {
         public int NumberNames { get; set; }
