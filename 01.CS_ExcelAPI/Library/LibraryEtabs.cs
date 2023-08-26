@@ -16,6 +16,9 @@ namespace _01.CS_ExcelAPI
         public CSiAPIv1.cHelper myHelper { get; set; }   
         public void SelectEtabs()
         {
+            int NumberItem = 1;
+            string[] casename = null;
+            int[] status = null;
             myHelper = new CSiAPIv1.Helper();
             #region
             ////set the following flag to true to attach to an existing instance of the program 
@@ -113,7 +116,17 @@ namespace _01.CS_ExcelAPI
             MyEtabsObject = (CSiAPIv1.cOAPI)System.Runtime.InteropServices.Marshal.GetActiveObject("CSI.ETABS.API.ETABSObject");
             //Get a reference to cSapModel to access all API classes and functions
             MySapModel = MyEtabsObject.SapModel;
-            MessageBox.Show("Đã kết nối ETABS");
+            MySapModel.Analyze.GetCaseStatus(ref NumberItem, ref casename, ref status);
+            if (status[0] == 1) 
+            {
+                MySapModel.Analyze.RunAnalysis();
+                MessageBox.Show("Run Analysis Complete");
+            }
+            else if (status[0] == 4)
+            {
+                MessageBox.Show("Connected Etabs Complete");
+            }    
+            
         }
     }
     public class LoadCombination

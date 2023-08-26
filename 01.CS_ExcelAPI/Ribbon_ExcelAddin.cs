@@ -52,7 +52,9 @@ namespace _01.CS_ExcelAPI
         }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
+
         {
+            
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
             
             int NumberPointNames = 1;
@@ -65,7 +67,8 @@ namespace _01.CS_ExcelAPI
             string[] SimilarToStrory = null;
             bool[] SpiliceAbove = null;
             double[] SpliceHeight = null;
-
+            SapModel.Story.GetStories(ref StoryNumber, ref StoryName, ref StoryElevation, ref StoryHeight,
+                ref IsMasterstory, ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
 
 
             int NumberResults = 1;
@@ -85,8 +88,7 @@ namespace _01.CS_ExcelAPI
             List<string> levelName = new List<string>();
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
             int v = SapModel.Results.Setup.SetComboSelectedForOutput(comboName);
-            SapModel.Story.GetStories(ref StoryNumber, ref StoryName, ref StoryElevation, ref StoryHeight,
-                ref IsMasterstory, ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
+
             List<List<string>> storyNameList = new List<List<string>>();
             List<List<string>> pointNameList = new List<List<string>>();
             List<List<string>> steptypeList = new List<List<string>>();
@@ -107,9 +109,7 @@ namespace _01.CS_ExcelAPI
                 List<double> R1Member = new List<double>();
                 List<double> R2Member = new List<double>();
                 List<double> R3Member = new List<double>();
-
                 List<double> jointDisplacement = new List<double>(); 
-
                 SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref uniqueName);
                 //Lấy chuyển vị tất cả các point
                 for (int j = 0; j < uniqueName.Length; j++)
@@ -275,7 +275,6 @@ namespace _01.CS_ExcelAPI
 
 
         }
-
 
     }
 }
