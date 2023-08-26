@@ -109,48 +109,43 @@ namespace _01.CS_ExcelAPI
                 List<double> R1Member = new List<double>();
                 List<double> R2Member = new List<double>();
                 List<double> R3Member = new List<double>();
-                List<double> jointDisplacement = new List<double>(); 
+                List<JointDisplacement> jointDisplacement = new List<JointDisplacement>(); 
                 SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref uniqueName);
                 //Lấy chuyển vị tất cả các point
                 for (int j = 0; j < uniqueName.Length; j++)
                 {
-                    SapModel.Results.JointDispl(uniqueName[j], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                    storyNameMemb.Add(StoryName[i]);
-                    pointNameMemb.Add(uniqueName[j]);
-                    U1Member.Add(U1[0]);
-                    U2Member.Add(U2[0]);
-                    U3Member.Add(U3[0]);
-                    R1Member.Add(R1[0]);
-                    R2Member.Add(R2[0]);
-                    R3Member.Add(R3[0]);
+                    SapModel.Results.JointDispl(uniqueName[j], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, 
+                        ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    
+                    {
+                        for (int k = 0; k <=1; k++)
+                        {
+                            JointDisplacement jdisp = new JointDisplacement();
+                            jdisp.Level = StoryName[i];
+                            jdisp.Name = uniqueName[j];
+                            jdisp.LoadCase = comboName;
+                            jdisp.Ux = U1[k];
+                            jdisp.Uy = U2[k];
+                            jdisp.Uz = U3[k];
+                            jdisp.Rx = R1[k];
+                            jdisp.Ry = R2[k];
+                            jdisp.Rz = R3[k];
+                            jointDisplacement.Add(jdisp);
+                        }
+                        
 
-                    jointDisplacement.Add(U1[0]);
-                    jointDisplacement.Add(U1[1]);
-                    jointDisplacement.Add(U2[0]);
-                    jointDisplacement.Add(U2[1]);
-                    jointDisplacement.Add(U3[0]);
-                    jointDisplacement.Add(U3[1]);
+                    }
                 }
-
-                currentWorksheet.Cells[i, 13] = StoryName[i];
-                currentWorksheet.Cells[i, 14] = StoryElevation[i];
-                currentWorksheet.Cells[i, 15] = jointDisplacement.Max();
-                currentWorksheet.Cells[i, 16] = jointDisplacement.Min();
-
-                storyNameList.Add(storyNameMemb);
-                pointNameList.Add(pointNameMemb);
-                U1list.Add(U1Member);
-                U2list.Add(U1Member);
-                U3list.Add(U1Member);
-                R1list.Add(R1Member);
-                R2list.Add(R2Member);
-                R3list.Add(R3Member);
-
-                //Lấy chuyển vị point lớn nhất tại mỗi tầng
-                for (int k = 0; k < uniqueName.Length; k++)
-                {
-
-                }
+                
+                currentWorksheet.Cells[i, 3] = StoryName[i];
+                currentWorksheet.Cells[i, 4] = comboName; 
+                currentWorksheet.Cells[i, 5] = StoryElevation[i];
+                currentWorksheet.Cells[i, 6] = jointDisplacement.Max(x => x.Ux);
+                currentWorksheet.Cells[i, 7] = jointDisplacement.Max(x => x.Uy);
+                currentWorksheet.Cells[i, 8] = jointDisplacement.Min(x => x.Ux);
+                currentWorksheet.Cells[i, 9] = jointDisplacement.Min(x => x.Uy);
+                currentWorksheet.Cells[i, 10] = Math.Max(Math.Abs(jointDisplacement.Max(x => x.Ux)), Math.Abs(jointDisplacement.Min(x => x.Ux)));
+                currentWorksheet.Cells[i, 11] = Math.Max(Math.Abs(jointDisplacement.Max(x => x.Uy)), Math.Abs(jointDisplacement.Min(x => x.Uy)));
 
             }
             

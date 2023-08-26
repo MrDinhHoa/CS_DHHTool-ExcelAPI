@@ -148,14 +148,15 @@ namespace _01.CS_ExcelAPI
     }
     public class JointDisplacement
     {
+        public string Level { get; set; }
         public string Name { get; set; }
         public string LoadCase { get; set; }
-        public double F1 { get; set; }
-        public double F2 { get; set; }
-        public double F3 { get; set; }
-        public double M1 { get; set; }
-        public double M2 { get; set; }
-        public double M3 { get; set; }
+        public double Ux { get; set; }
+        public double Uy { get; set; }
+        public double Uz { get; set; }
+        public double Rx { get; set; }
+        public double Ry { get; set; }
+        public double Rz { get; set; }
 
     }
 }
