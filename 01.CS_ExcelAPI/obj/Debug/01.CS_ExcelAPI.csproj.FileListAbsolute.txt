@@ -130,3 +130,7 @@ D:\STUDY\Programming\C-Sharp\03.CS_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Mic
 D:\STUDY\Programming\C-Sharp\03.CS_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.Utilities.Internal.dll
 D:\STUDY\Programming\C-Sharp\03.CS_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.RemoteControl.xml
 D:\STUDY\Programming\C-Sharp\03.CS_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.Utilities.Internal.xml
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.RemoteControl.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.Utilities.Internal.dll
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.RemoteControl.xml
+D:\WORKING\DHH\C-Sharp_DHHTool_ExcelAPI\01.CS_ExcelAPI\bin\Debug\Microsoft.VisualStudio.Utilities.Internal.xml
