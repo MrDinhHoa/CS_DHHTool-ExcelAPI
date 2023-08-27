@@ -2,10 +2,12 @@
 using Microsoft.Office.Tools.Ribbon;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ETABSv17;
 using Microsoft.Office;
@@ -100,14 +102,25 @@ namespace _01.CS_ExcelAPI
             List<List<double>> R2list = new List<List<double>>();
             List<List<double>> R3list = new List<List<double>>();
             // Length = 6
-            var jointDisplacement  = StoryName.Select((storyName) =>
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var jointDisplacement = StoryName.AsParallel().Select(storyName =>
             {
+                var getNameListStopwatch = Stopwatch.StartNew();
                 SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
-                var jdisps = uniqueName.Select((unique) =>
+                getNameListStopwatch.Stop();
+                Debug.WriteLine($"GetNameListOnStory: {stopwatch.ElapsedMilliseconds} ms");
+
+                var jdisps = uniqueName.AsParallel().Select(unique =>
                 {
+                    var jointDisplStopwatch = Stopwatch.StartNew();
                     SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm,
                         ref LoadCase, ref StepType, ref StepNum,
                         ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    jointDisplStopwatch.Stop();
+                    Debug.WriteLine($"JointDispl: {stopwatch.ElapsedMilliseconds} ms");
+
                     return new JointDisplacement()
                     {
                         Level = storyName,
@@ -119,32 +132,35 @@ namespace _01.CS_ExcelAPI
                         Rx = R1[0],
                         Ry = R2[0],
                         Rz = R3[0]
-
                     };
-                });
-                // jdisps.Max((k) => k.Ux) returm phan tu co UX lon nhat
-                // [1 1 2 3 4  6 6]
-                // jdisps.Max((k) => k.Ux)= 6
-                // [6 6]
-                var jdisp = jdisps.First();
-                // var jdispMaxUx = jdisps.First((j) => j.Ux == jdisps.Max((k) => k.Ux));
-                
+                }).ToList();
 
+                var maxUx = jdisps.Max(k => k.Ux);
+                var minUy = jdisps.Min(k => k.Uy);
+
+                var jdisp = jdisps.First();
 
                 return new JointDisplacement()
                 {
                     Level = jdisp.Level,
-                    Ux = jdisps.Max((k) => k.Ux),
-                    Uy = jdisps.Min((k) => k.Uy),
+                    Ux = maxUx,
+                    Uy = minUy
                 };
             }).ToArray();
-            for (var i = 0;i < jointDisplacement.Count(); i++)
+
+            Parallel.For(0, jointDisplacement.Length, i =>
             {
                 var jdp = jointDisplacement[i];
-                currentWorksheet.Cells[i+1, 3] = jdp.Level;
-                currentWorksheet.Cells[i+1, 4] = comboName;
-                currentWorksheet.Cells[i+1, 6] = jdp.Ux;
-            }
+                currentWorksheet.Cells[i + 1, 3] = jdp.Level;
+                currentWorksheet.Cells[i + 1, 4] = comboName;
+                currentWorksheet.Cells[i + 1, 6] = jdp.Ux;
+            });
+
+            stopwatch.Stop();
+
+            Debug.WriteLine($"Whole process execution time: {stopwatch.ElapsedMilliseconds} ms");
+
+
 
 
             //for (int i = 1; i < StoryName.Length; i++)
