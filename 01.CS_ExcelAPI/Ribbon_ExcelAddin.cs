@@ -102,6 +102,35 @@ namespace _01.CS_ExcelAPI
             List<List<double>> R2list = new List<List<double>>();
             List<List<double>> R3list = new List<List<double>>();
             // Length = 6
+            //Dictionary<string, List<JointDisplacement>> jdbs = new Dictionary<string, List<JointDisplacement>>();
+
+            //Parallel.For(0, StoryName.Length, i =>
+            //{
+            //    var storyName = StoryName[i];
+            //    SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
+
+            //    var jdisps = uniqueName.AsParallel().Select(unique =>
+            //    {
+            //        SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm,
+            //            ref LoadCase, ref StepType, ref StepNum,
+            //            ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+
+            //        return new JointDisplacement()
+            //        {
+            //            Level = storyName,
+            //            Name = unique,
+            //            LoadCase = comboName,
+            //            Ux = U1[0],
+            //            Uy = U2[0],
+            //            Uz = U3[0],
+            //            Rx = R1[0],
+            //            Ry = R2[0],
+            //            Rz = R3[0]
+            //        };
+            //    });
+            //    jdbs[StoryName[i]] = jdisps.ToList();
+            //});
+
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
