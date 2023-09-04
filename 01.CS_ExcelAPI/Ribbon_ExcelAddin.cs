@@ -17,6 +17,7 @@ using Microsoft.Office.Interop.Excel;
 using eItemType = CSiAPIv1.eItemType;
 using Excel = Microsoft.Office.Interop.Excel;
 using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
+using System.Security.Cryptography.X509Certificates;
 // ReSharper disable All
 
 
@@ -35,10 +36,6 @@ namespace _01.CS_ExcelAPI
         SapClass sapClass = new SapClass();
         public string comboName = "ENVESLS";
         public string comboUnits = "";
-
-        //List<LoadCombination> LoadCombinationsList = new List<LoadCombination>();
-        //List<JointReaction> JointReaction = new List<JointReaction>();
-        //List<JointDisplacement> JointDiscplaList = new List<JointDisplacement>();
 
         private void BtnSelectEtabs_Click(object sender, RibbonControlEventArgs e)
         {
@@ -59,7 +56,14 @@ namespace _01.CS_ExcelAPI
         {
             
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
-            
+
+            //Get all Load Combo in Model
+            int NumbernameCombo = 1;
+            string[] ComboName = null;
+            SapModel.RespCombo.GetNameList(ref NumbernameCombo, ref ComboName);
+            string[] SLSComboName = Array.FindAll(ComboName, x => x.StartsWith("SLS"));
+
+            //Get All Stories in Model
             int NumberPointNames = 1;
             string[] uniqueName = null;
             int StoryNumber = 1;
@@ -73,47 +77,101 @@ namespace _01.CS_ExcelAPI
             SapModel.Story.GetStories(ref StoryNumber, ref StoryName, ref StoryElevation, ref StoryHeight,
                 ref IsMasterstory, ref SimilarToStrory, ref SpiliceAbove, ref SpliceHeight);
 
-
-            int NumberResults = 1;
-            string[] Obj = null;
-            string[] Elm = null;
-            string[] LoadCase = null;
-            string[] StepType = null;
-            double[] StepNum = null;
-            double[] U1 = null;
-            double[] U2 = null;
-            double[] U3 = null;
-            double[] R1 = null;
-            double[] R2 = null;
-            double[] R3 = null;
-
-            
-            List<string> levelName = new List<string>();
+            //Get Displacement Max by Level And Load Combo
             SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput();
-            int v = SapModel.Results.Setup.SetComboSelectedForOutput(comboName);
+            
 
-            List<List<string>> storyNameList = new List<List<string>>();
-            List<List<string>> pointNameList = new List<List<string>>();
-            List<List<string>> steptypeList = new List<List<string>>();
-            List<List<double>> U1list = new List<List<double>>();
-            List<List<double>> U2list = new List<List<double>>();
-            List<List<double>> U3list = new List<List<double>>();
-            List<List<double>> R1list = new List<List<double>>();
-            List<List<double>> R2list = new List<List<double>>();
-            List<List<double>> R3list = new List<List<double>>();
-            // Length = 6
-            //Dictionary<string, List<JointDisplacement>> jdbs = new Dictionary<string, List<JointDisplacement>>();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            //Parallel.For(0, StoryName.Length, i =>
+            var jointDisplacements = SLSComboName.Select
+            (slsComboname =>
+            {
+                SapModel.Results.Setup.SetComboSelectedForOutput(slsComboname);
+                List<JointDisplacement> jointDisplacement = StoryName.AsParallel().Select
+                (storyName =>
+                {
+                    SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
+
+                    List<JointDisplacement> jdisps = uniqueName.AsParallel().Select(unique =>
+                    {
+                        Stopwatch jointDisplStopwatch = Stopwatch.StartNew();
+                        int NumberResults = 1;
+                        string[] Obj = null;
+                        string[] Elm = null;
+                        string[] LoadCase = null;
+                        string[] StepType = null;
+                        double[] StepNum = null;
+                        double[] U1 = null;
+                        double[] U2 = null;
+                        double[] U3 = null;
+                        double[] R1 = null;
+                        double[] R2 = null;
+                        double[] R3 = null;
+                        SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum,
+                                                     ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+
+                        return new JointDisplacement()
+                        {
+                            Level = storyName,
+                            Name = unique,
+                            LoadCase = comboName,
+                            Ux = U1[0],
+                            Uy = U2[0],
+                            Uz = U3[0],
+                            Rx = R1[0],
+                            Ry = R2[0],
+                            Rz = R3[0]
+                        };
+                    }).ToList();
+
+                    double maxUx = jdisps.Max(k => k.Ux);
+                    double minUy = jdisps.Min(k => k.Uy);
+
+                    JointDisplacement jdisp = jdisps.First();
+
+                    return new JointDisplacement()
+                    {
+                        Level = jdisp.Level,
+                        Ux = maxUx,
+                        Uy = minUy
+                    };
+                }
+                ).ToList();
+            }
+            ).ToArray();
+
+            #region Get Displacement Not Load Combo
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+
+            //JointDisplacement[] jointDisplacement = StoryName.AsParallel().Select
+            //(storyName =>
             //{
-            //    var storyName = StoryName[i];
+            //    Stopwatch getNameListStopwatch = Stopwatch.StartNew();
             //    SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
+            //    getNameListStopwatch.Stop();
+            //    Debug.WriteLine($"GetNameListOnStory: {stopwatch.ElapsedMilliseconds} ms");
 
-            //    var jdisps = uniqueName.AsParallel().Select(unique =>
+            //    List<JointDisplacement> jdisps = uniqueName.AsParallel().Select(unique =>
             //    {
-            //        SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm,
-            //            ref LoadCase, ref StepType, ref StepNum,
-            //            ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+            //        Stopwatch jointDisplStopwatch = Stopwatch.StartNew();
+            //        int NumberResults = 1;
+            //        string[] Obj = null;
+            //        string[] Elm = null;
+            //        string[] LoadCase = null;
+            //        string[] StepType = null;
+            //        double[] StepNum = null;
+            //        double[] U1 = null;
+            //        double[] U2 = null;
+            //        double[] U3 = null;
+            //        double[] R1 = null;
+            //        double[] R2 = null;
+            //        double[] R3 = null;
+            //        SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum,
+            //                                     ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+            //        jointDisplStopwatch.Stop();
+            //        Debug.WriteLine($"JointDispl: {stopwatch.ElapsedMilliseconds} ms");
 
             //        return new JointDisplacement()
             //        {
@@ -127,140 +185,34 @@ namespace _01.CS_ExcelAPI
             //            Ry = R2[0],
             //            Rz = R3[0]
             //        };
-            //    });
-            //    jdbs[StoryName[i]] = jdisps.ToList();
-            //});
+            //    }).ToList();
 
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            //    double maxUx = jdisps.Max(k => k.Ux);
+            //    double minUy = jdisps.Min(k => k.Uy);
 
-            var jointDisplacement = StoryName.AsParallel().Select(storyName =>
+            //    JointDisplacement jdisp = jdisps.First();
+
+            //    return new JointDisplacement()
+            //    {
+            //        Level = jdisp.Level,
+            //        Ux = maxUx,
+            //        Uy = minUy
+            //    };
+            //}
+            //).ToArray();
+            #endregion
+
+            #region Write To Excel
+            Parallel.For(0, jointDisplacements.Length, i =>
             {
-                var getNameListStopwatch = Stopwatch.StartNew();
-                SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
-                getNameListStopwatch.Stop();
-                Debug.WriteLine($"GetNameListOnStory: {stopwatch.ElapsedMilliseconds} ms");
-
-                var jdisps = uniqueName.AsParallel().Select(unique =>
-                {
-                    var jointDisplStopwatch = Stopwatch.StartNew();
-                    SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm,
-                        ref LoadCase, ref StepType, ref StepNum,
-                        ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-                    jointDisplStopwatch.Stop();
-                    Debug.WriteLine($"JointDispl: {stopwatch.ElapsedMilliseconds} ms");
-
-                    return new JointDisplacement()
-                    {
-                        Level = storyName,
-                        Name = unique,
-                        LoadCase = comboName,
-                        Ux = U1[0],
-                        Uy = U2[0],
-                        Uz = U3[0],
-                        Rx = R1[0],
-                        Ry = R2[0],
-                        Rz = R3[0]
-                    };
-                }).ToList();
-
-                var maxUx = jdisps.Max(k => k.Ux);
-                var minUy = jdisps.Min(k => k.Uy);
-
-                var jdisp = jdisps.First();
-
-                return new JointDisplacement()
-                {
-                    Level = jdisp.Level,
-                    Ux = maxUx,
-                    Uy = minUy
-                };
-            }).ToArray();
-
-            Parallel.For(0, jointDisplacement.Length, i =>
-            {
-                var jdp = jointDisplacement[i];
+                var jdp = jointDisplacements[i];
                 currentWorksheet.Cells[i + 1, 3] = jdp.Level;
                 currentWorksheet.Cells[i + 1, 4] = comboName;
                 currentWorksheet.Cells[i + 1, 6] = jdp.Ux;
             });
-
             stopwatch.Stop();
-
             Debug.WriteLine($"Whole process execution time: {stopwatch.ElapsedMilliseconds} ms");
-
-
-
-
-            //for (int i = 1; i < StoryName.Length; i++)
-            //{
-            //    List<string> storyNameMemb = new List<string>();
-            //    List<string> pointNameMemb = new List<string>();
-            //    List<double> U1Member = new List<double>();
-            //    List<double> U2Member = new List<double>();
-            //    List<double> U3Member = new List<double>();
-            //    List<double> R1Member = new List<double>();
-            //    List<double> R2Member = new List<double>();
-            //    List<double> R3Member = new List<double>();
-            //    //List<JointDisplacement> jointDisplacement = new List<JointDisplacement>(); 
-            //    SapModel.PointObj.GetNameListOnStory(StoryName[i], ref NumberPointNames, ref uniqueName);
-            //    //Lấy chuyển vị tất cả các point
-            //    for (int j = 0; j < uniqueName.Length; j++)
-            //    {
-            //        SapModel.Results.JointDispl(uniqueName[j], eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum, 
-            //            ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-
-            //        {
-            //            for (int k = 0; k <=1; k++)
-            //            {
-            //                JointDisplacement jdisp = new JointDisplacement();
-            //                jdisp.Level = StoryName[i];
-            //                jdisp.Name = uniqueName[j];
-            //                jdisp.LoadCase = comboName;
-            //                jdisp.Ux = U1[k];
-            //                jdisp.Uy = U2[k];
-            //                jdisp.Uz = U3[k];
-            //                jdisp.Rx = R1[k];
-            //                jdisp.Ry = R2[k];
-            //                jdisp.Rz = R3[k];
-            //                jointDisplacement.Add(jdisp);
-            //            }
-
-
-            //        }
-            //    }
-
-            //    currentWorksheet.Cells[i, 3] = StoryName[i];
-            //    currentWorksheet.Cells[i, 4] = comboName; 
-            //    currentWorksheet.Cells[i, 5] = StoryElevation[i];
-            //    currentWorksheet.Cells[i, 6] = jointDisplacement.Max(x => x.Ux);
-            //    currentWorksheet.Cells[i, 7] = jointDisplacement.Max(x => x.Uy);
-            //    currentWorksheet.Cells[i, 8] = jointDisplacement.Min(x => x.Ux);
-            //    currentWorksheet.Cells[i, 9] = jointDisplacement.Min(x => x.Uy);
-            //    currentWorksheet.Cells[i, 10] = Math.Max(Math.Abs(jointDisplacement.Max(x => x.Ux)), Math.Abs(jointDisplacement.Min(x => x.Ux)));
-            //    currentWorksheet.Cells[i, 11] = Math.Max(Math.Abs(jointDisplacement.Max(x => x.Uy)), Math.Abs(jointDisplacement.Min(x => x.Uy)));
-
-            //}
-
-            List<string> resltstoName = storyNameList.SelectMany(i => i).ToList();
-            List<string> resltpointName = pointNameList.SelectMany(i => i).ToList();
-            List<double> reslU1 = U1list.SelectMany(i => i).ToList();
-            List<double> reslU2 = U2list.SelectMany(i => i).ToList();
-            List<double> reslU3 = U3list.SelectMany(i => i).ToList();
-            List<double> reslR1 = R1list.SelectMany(i => i).ToList();
-            List<double> reslR2 = R2list.SelectMany(i => i).ToList();
-            List<double> reslR3 = R3list.SelectMany(i => i).ToList();
-            for (int i = 0; i < resltstoName.Count(); i++)
-            {
-                currentWorksheet.Cells[i + 1, 1] = resltstoName[i];
-                currentWorksheet.Cells[i + 1, 2] = resltpointName[i];
-                currentWorksheet.Cells[i + 1, 3] = reslU1[i];
-                currentWorksheet.Cells[i + 1, 4] = reslU2[i];
-                currentWorksheet.Cells[i + 1, 5] = reslU3[i];
-                currentWorksheet.Cells[i + 1, 6] = reslR1[i];
-                currentWorksheet.Cells[i + 1, 7] = reslR2[i];
-                currentWorksheet.Cells[i + 1, 8] = reslR3[i];
-            }
+            #endregion
         }
 
         private void BtnEtabsReaction_Click(object sender, RibbonControlEventArgs e)
