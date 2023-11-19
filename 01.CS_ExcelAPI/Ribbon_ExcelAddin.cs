@@ -52,7 +52,6 @@ namespace _01.CS_ExcelAPI
         }
 
         private void BtnCheckStruc_Click(object sender, RibbonControlEventArgs e)
-
         {
             
             Worksheet currentWorksheet = Globals.ThisAddIn.GetActiveWorkSheet();
@@ -83,133 +82,133 @@ namespace _01.CS_ExcelAPI
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-
-            var jointDisplacements = SLSComboName.Select
-            (slsComboname =>
-            {
-                SapModel.Results.Setup.SetComboSelectedForOutput(slsComboname);
-                List<JointDisplacement> jointDisplacement = StoryName.AsParallel().Select
-                (storyName =>
-                {
-                    SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
-
-                    List<JointDisplacement> jdisps = uniqueName.AsParallel().Select(unique =>
-                    {
-                        Stopwatch jointDisplStopwatch = Stopwatch.StartNew();
-                        int NumberResults = 1;
-                        string[] Obj = null;
-                        string[] Elm = null;
-                        string[] LoadCase = null;
-                        string[] StepType = null;
-                        double[] StepNum = null;
-                        double[] U1 = null;
-                        double[] U2 = null;
-                        double[] U3 = null;
-                        double[] R1 = null;
-                        double[] R2 = null;
-                        double[] R3 = null;
-                        SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum,
-                                                     ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-
-                        return new JointDisplacement()
-                        {
-                            Level = storyName,
-                            Name = unique,
-                            LoadCase = comboName,
-                            Ux = U1[0],
-                            Uy = U2[0],
-                            Uz = U3[0],
-                            Rx = R1[0],
-                            Ry = R2[0],
-                            Rz = R3[0]
-                        };
-                    }).ToList();
-
-                    double maxUx = jdisps.Max(k => k.Ux);
-                    double minUy = jdisps.Min(k => k.Uy);
-
-                    JointDisplacement jdisp = jdisps.First();
-
-                    return new JointDisplacement()
-                    {
-                        Level = jdisp.Level,
-                        Ux = maxUx,
-                        Uy = minUy
-                    };
-                }
-                ).ToList();
-            }
-            ).ToArray();
-
-            #region Get Displacement Not Load Combo
-            //Stopwatch stopwatch = new Stopwatch();
-            //stopwatch.Start();
-
-            //JointDisplacement[] jointDisplacement = StoryName.AsParallel().Select
-            //(storyName =>
+            #region
+            //var jointDisplacements = SLSComboName.Select
+            //(slsComboname =>
             //{
-            //    Stopwatch getNameListStopwatch = Stopwatch.StartNew();
-            //    SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
-            //    getNameListStopwatch.Stop();
-            //    Debug.WriteLine($"GetNameListOnStory: {stopwatch.ElapsedMilliseconds} ms");
-
-            //    List<JointDisplacement> jdisps = uniqueName.AsParallel().Select(unique =>
+            //    SapModel.Results.Setup.SetComboSelectedForOutput(slsComboname);
+            //    List<JointDisplacement> jointDisplacement = StoryName.AsParallel().Select
+            //    (storyName =>
             //    {
-            //        Stopwatch jointDisplStopwatch = Stopwatch.StartNew();
-            //        int NumberResults = 1;
-            //        string[] Obj = null;
-            //        string[] Elm = null;
-            //        string[] LoadCase = null;
-            //        string[] StepType = null;
-            //        double[] StepNum = null;
-            //        double[] U1 = null;
-            //        double[] U2 = null;
-            //        double[] U3 = null;
-            //        double[] R1 = null;
-            //        double[] R2 = null;
-            //        double[] R3 = null;
-            //        SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum,
-            //                                     ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
-            //        jointDisplStopwatch.Stop();
-            //        Debug.WriteLine($"JointDispl: {stopwatch.ElapsedMilliseconds} ms");
+            //        SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
+
+            //        List<JointDisplacement> jdisps = uniqueName.AsParallel().Select(unique =>
+            //        {
+            //            Stopwatch jointDisplStopwatch = Stopwatch.StartNew();
+            //            int NumberResults = 1;
+            //            string[] Obj = null;
+            //            string[] Elm = null;
+            //            string[] LoadCase = null;
+            //            string[] StepType = null;
+            //            double[] StepNum = null;
+            //            double[] U1 = null;
+            //            double[] U2 = null;
+            //            double[] U3 = null;
+            //            double[] R1 = null;
+            //            double[] R2 = null;
+            //            double[] R3 = null;
+            //            SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum,
+            //                                         ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+
+            //            return new JointDisplacement()
+            //            {
+            //                Level = storyName,
+            //                Name = unique,
+            //                LoadCase = comboName,
+            //                Ux = U1[0],
+            //                Uy = U2[0],
+            //                Uz = U3[0],
+            //                Rx = R1[0],
+            //                Ry = R2[0],
+            //                Rz = R3[0]
+            //            };
+            //        }).ToList();
+
+            //        double maxUx = jdisps.Max(k => k.Ux);
+            //        double minUy = jdisps.Min(k => k.Uy);
+
+            //        JointDisplacement jdisp = jdisps.First();
 
             //        return new JointDisplacement()
             //        {
-            //            Level = storyName,
-            //            Name = unique,
-            //            LoadCase = comboName,
-            //            Ux = U1[0],
-            //            Uy = U2[0],
-            //            Uz = U3[0],
-            //            Rx = R1[0],
-            //            Ry = R2[0],
-            //            Rz = R3[0]
+            //            Level = jdisp.Level,
+            //            Ux = maxUx,
+            //            Uy = minUy
             //        };
-            //    }).ToList();
-
-            //    double maxUx = jdisps.Max(k => k.Ux);
-            //    double minUy = jdisps.Min(k => k.Uy);
-
-            //    JointDisplacement jdisp = jdisps.First();
-
-            //    return new JointDisplacement()
-            //    {
-            //        Level = jdisp.Level,
-            //        Ux = maxUx,
-            //        Uy = minUy
-            //    };
+            //    }
+            //    ).ToList();
             //}
             //).ToArray();
             #endregion
+            #region Get Displacement Not Load Combo
+
+            stopwatch.Start();
+
+            JointDisplacement[] jointDisplacement = StoryName.AsParallel().Select
+            (storyName =>
+            {
+                Stopwatch getNameListStopwatch = Stopwatch.StartNew();
+                SapModel.PointObj.GetNameListOnStory(storyName, ref NumberPointNames, ref uniqueName);
+                getNameListStopwatch.Stop();
+                Debug.WriteLine($"GetNameListOnStory: {stopwatch.ElapsedMilliseconds} ms");
+
+                List<JointDisplacement> jdisps = uniqueName.AsParallel().Select(unique =>
+                {
+                    Stopwatch jointDisplStopwatch = Stopwatch.StartNew();
+                    int NumberResults = 1;
+                    string[] Obj = null;
+                    string[] Elm = null;
+                    string[] LoadCase = null;
+                    string[] StepType = null;
+                    double[] StepNum = null;
+                    double[] U1 = null;
+                    double[] U2 = null;
+                    double[] U3 = null;
+                    double[] R1 = null;
+                    double[] R2 = null;
+                    double[] R3 = null;
+                    SapModel.Results.JointDispl(unique, eItemTypeElm.Element, ref NumberResults, ref Obj, ref Elm, ref LoadCase, ref StepType, ref StepNum,
+                                                 ref U1, ref U2, ref U3, ref R1, ref R2, ref R3);
+                    jointDisplStopwatch.Stop();
+                    Debug.WriteLine($"JointDispl: {stopwatch.ElapsedMilliseconds} ms");
+
+                    return new JointDisplacement()
+                    {
+                        Level = storyName,
+                        Name = unique,
+                        LoadCase = comboName,
+                        Ux = U1[0],
+                        Uy = U2[0],
+                        Uz = U3[0],
+                        Rx = R1[0],
+                        Ry = R2[0],
+                        Rz = R3[0]
+                    };
+                }).ToList();
+
+                double maxUx = jdisps.Max(k => k.Ux);
+                double minUy = jdisps.Min(k => k.Uy);
+
+                JointDisplacement jdisp = jdisps.First();
+
+                return new JointDisplacement()
+                {
+                    Level = jdisp.Level,
+                    Ux = maxUx,
+                    Uy = minUy
+                };
+            }
+            ).ToArray();
+            #endregion
 
             #region Write To Excel
-            Parallel.For(0, jointDisplacements.Length, i =>
-            {
-                var jdp = jointDisplacements[i];
-                currentWorksheet.Cells[i + 1, 3] = jdp.Level;
-                currentWorksheet.Cells[i + 1, 4] = comboName;
-                currentWorksheet.Cells[i + 1, 6] = jdp.Ux;
-            });
+            //Parallel.For(0, jointDisplacements.Length, i =>
+            //{
+            //    var jdp = jointDisplacements[i];
+            //    currentWorksheet.Cells[i + 1, 3] = jdp.Level;
+            //    currentWorksheet.Cells[i + 1, 4] = comboName;
+            //    currentWorksheet.Cells[i + 1, 6] = jdp.Ux;
+            //});
             stopwatch.Stop();
             Debug.WriteLine($"Whole process execution time: {stopwatch.ElapsedMilliseconds} ms");
             #endregion
